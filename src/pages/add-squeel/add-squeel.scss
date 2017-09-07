@@ -1,0 +1,77 @@
+page-add-squeel {
+  .gameHeader {
+    height: 100px;
+    // padding-top: 10px;
+    background-color: #daf5ff;
+    font-size: 1.2em;
+  }
+  .circle1:before {
+    content: ' \25CF';
+    font-size: 40px;
+    color: #77D353;
+  }
+  .circle2:before {
+    content: ' \25CF';
+    font-size: 40px;
+    color: #00A6FF;
+  }
+  .team1:before {
+    content: ' \25C9';
+    font-size: 40px;
+    color: #77D353;
+  }
+  .team2:before {
+    content: ' \25C9';
+    font-size: 40px;
+    color: #00A6FF;
+  }
+  .team1:before {
+    content: ' \25C9';
+    font-size: 40px;
+    color: #77D353;
+  }
+  .noteam:before {
+    content: ' \25C9';
+    font-size: 40px;
+    color: grey;
+  }
+  .charLeft {
+    font-weight: 600;
+    color: map-get($colors, primary);
+  }
+  ion-item:first-child {
+    border: 0 !important;
+  }
+  ion-item {
+    padding-left: 0px !important;
+  }
+  ion-col {
+    margin: auto !important;
+  }
+  ion-list {
+    margin: 0 !important;
+  }
+  ion-textarea {
+    font-family: 'CenturyGothic';
+  }
+  ion-label {
+    margin: 5px 0 5px 0 !important;
+  }
+  .squeel {
+    margin-top: 30px !important;
+  }
+  .header ion-col {
+    margin: auto;
+  }
+
+  #stats {
+    .score {
+      font-size: 1.5em;
+    }
+    ion-icon {
+      font-size: 1.4em;
+      color: #D5BA4B;
+    }
+    color: grey;
+  }
+}

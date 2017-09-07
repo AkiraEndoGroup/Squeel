@@ -4,14 +4,116 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-fab bottom right (tap)="createSqueel()">
+    <button ion-fab><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
+  <div class="gameHeader">
+    <ion-grid>
+      <ion-row text-center>
+        <ion-col col-2 id="oponent1">
+          <span class="circle1"></span>
+          <br>
+          <span>MSU</span>
+        </ion-col>
+        <ion-col col-8 id="stats" text-center>
+          <span class="score">0 - 0</span>
+          <br>
+          <span>{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
+        </ion-col>
+        <ion-col col-2 id="oponent2">
+          <span class="circle2"></span>
+          <br>
+          <span>UofM</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div id="squeels" *ngIf="squeelsData">
+    <div>
+      <ion-segment [(ngModel)]="filter">
+        <ion-segment-button value="latest">
+          Latest
+        </ion-segment-button>
+        <ion-segment-button value="topRated">
+          Top Rated
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="filter">
+      <ion-list *ngSwitchCase="'latest'">
+        <ion-item-sliding *ngFor="let squeel of squeelsData">
+          <ion-item >
+            <ion-grid>
+              <ion-row>
+                <ion-col col-1 class="circle3" *ngIf="squeel.squeel.team == 1" text-center >
+
+                </ion-col>
+                <ion-col col-1 class="circle4" *ngIf="squeel.squeel.team == 2" text-center>
+
+                </ion-col>
+                <ion-col col-9 text-wrap class="description">
+                  <p> {{squeel.squeel.description}}</p>
+                  <!-- <br> -->
+                  <span class="date">{{squeel.squeel.createdAt | date: 'MMM d - hh:mm a'}}</span>
+                </ion-col>
+                <ion-col col-2 text-right class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+                  <span>{{squeel.length}}</span>
+                  <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+                </ion-col>
+                <ion-col col-2 text-right class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+                  <span>{{squeel.length}}</span>
+                  <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger">
+              <ion-icon name="flag"></ion-icon>
+              Report
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <ion-list *ngSwitchCase="'topRated'">
+        <ion-item-sliding *ngFor="let squeel of squeelsTop" >
+          <ion-item >
+            <ion-grid>
+              <ion-row>
+                <ion-col col-1 class="circle3" *ngIf="squeel.squeel.team == 1" text-center>
+
+                </ion-col>
+                <ion-col col-1 class="circle4" *ngIf="squeel.squeel.team == 2" text-center>
+
+                </ion-col>
+                <ion-col col-9 text-wrap class="description">
+                  <p> {{squeel.squeel.description}}</p>
+                  <!-- <br> -->
+                  <span class="date">{{squeel.squeel.createdAt | date: 'MMM d - hh:mm a'}}</span>
+                </ion-col>
+                <ion-col col-2 text-right class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+                  <span>{{squeel.length}}</span>
+                  <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+                </ion-col>
+                <ion-col col-2 text-right class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+                  <span>{{squeel.length}}</span>
+                  <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger">
+              <ion-icon name="flag"></ion-icon>
+              Report
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
