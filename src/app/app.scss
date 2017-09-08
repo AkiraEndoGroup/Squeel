@@ -15,6 +15,18 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@font-face {
+  font-family: CenturyGothicBold;
+  src: url("../assets/fonts/CenturyGothicBold.ttf");
+}
+@font-face {
+  font-family: CenturyGothic;
+  src: url("../assets/fonts/CenturyGothic.ttf");
+}
+// $font-family-base: 'CenturyGothic' !important;
+* {
+  font-family: 'CenturyGothic';
+}
 
 .toolbar-background{
   // background-color: #3d95ce;
@@ -28,3 +40,7 @@
 .bar-button {
   color: white !important;
 }
+// .icon-md-primary {
+//   color: white;
+//   font-size: 1.5em;
+// }

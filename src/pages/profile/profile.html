@@ -40,7 +40,7 @@
       <ion-item-sliding *ngFor="let squeel of user.squeels">
         <ion-item >
           <ion-row>
-            <ion-col col-9 text-wrap>
+            <ion-col col-9 text-wrap class="description">
               <p> {{squeel.description}}</p>
               <span class="date">{{squeel.createdAt | date: 'MMM, d - hh:mm a'}}</span>
             </ion-col>

@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ToastController, ViewController } 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { Angular2Apollo } from 'angular2-apollo';
-import { Subscription } from 'rxjs/Subscription'
 import gql from 'graphql-tag';
 import 'rxjs/add/operator/toPromise';
 

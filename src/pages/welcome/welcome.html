@@ -1,9 +1,10 @@
 <ion-content text-center padding>
   <div class="logo">
-    <img src="../../assets/logo.png" />
+    <img src="assets/logo.png" />
   </div>
   <div class="form">
-    <button ion-button (tap)="loginFacebook()" block class="facebook"> <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon> Login with Facebook </button>
+    <button ion-button (tap)="loginFacebook()" block class="facebook" icon-left> <ion-icon ios="logo-facebook" md="logo-facebook" ></ion-icon> Login with Facebook </button>
+    <button ion-button (tap)="loginTwitter()" block class="facebook" icon-left> <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon> Login with Twitter </button>
     <div class="terms"> By registering, you agree to our <span>Terms and Conditions</span> and <span>Privacy policy</span>.</div>
   </div>
 </ion-content>

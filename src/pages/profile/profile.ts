@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 
 import { Angular2Apollo } from 'angular2-apollo';
-import { Subscription } from 'rxjs/Subscription'
 import gql from 'graphql-tag';
 import 'rxjs/add/operator/toPromise';
 

@@ -37,7 +37,7 @@ export class WelcomePage {
     let env = this;
 
     //If platform is browser
-    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+    // if (this.platform.is('core') || this.platform.is('mobileweb')) {
       this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
       console.log(this.user);
       this.loading = this.loadingCtrl.create({
@@ -69,74 +69,85 @@ export class WelcomePage {
         }
       });
       return;
-    } else {
-      let permissions = new Array<string>();
-      let that = this;
-
-      //The permissions your facebook app needs from the user
-      permissions = ["public_profile", "email"];
-
-      this.loading = this.loadingCtrl.create({
-        content: 'Logging in...'
-      });
-      this.loading.present();
-
-      this.fb.login(permissions)
-      .then(function(response) {
-        let userId = response.authResponse.userID;
-        let params = new Array<string>();
-
-        //Getting name and gender properties
-        that.fb.api("/me?fields=name,gender,email", params)
-        .then(function(user) {
-          console.log("user");
-          console.log(user);
-          user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-          that.user = user;
-          that.createUser().then(({data}) => {
-            console.log("create");
-            console.log(data);
-            let token = <any>{};
-            token = data;
-            env.nativeStorage.setItem('user',
-            {
-              name: this.user.name,
-              email: this.user.email,
-              profileUrl: this.user.picture
-            })
-            .then(function(){
-              this.loading.dismiss();
-              this.navCtrl.push(TabsPage);
-            }, function (error) {
-              console.log(error);
-            });
-          }, (errors) => {
-            if (errors == "Error: GraphQL error: User already exists with that information") {
-              that.signInUser().then(({data}) => {
-                console.log("login");
-                console.log(data);
-                let token = <any>{};
-                token = data;
-                env.nativeStorage.setItem('user',
-                {
-                  name: this.user.name,
-                  email: this.user.email,
-                  profileUrl: this.user.picture
-                })
-                .then(function(){
-                  this.loading.dismiss();
-                  this.navCtrl.push(TabsPage);
-                }, function (error) {
-                  console.log(error);
-                });
-              });
-            }
-          });
-        });
-      }, function(error){
-        console.log(error);
-      });
-    }
+    // } else {
+    //   let permissions = new Array<string>();
+    //   let that = this;
+    //
+    //   //The permissions your facebook app needs from the user
+    //   permissions = ["public_profile", "email"];
+    //
+    //   this.loading = this.loadingCtrl.create({
+    //     content: 'Logging in...'
+    //   });
+    //   this.loading.present();
+    //
+    //   this.fb.login(permissions)
+    //   .then(function(response) {
+    //     let userId = response.authResponse.userID;
+    //     let params = new Array<string>();
+    //
+    //     //Getting name and gender properties
+    //     that.fb.api("/me?fields=name,gender,email", params)
+    //     .then(function(user) {
+    //       console.log("user");
+    //       console.log(user);
+    //       user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+    //       that.user = user;
+    //       that.createUser().then(({data}) => {
+    //         console.log("create");
+    //         console.log(data);
+    //         let token = <any>{};
+    //         token = data;
+    //         localStorage.setItem('graphcoolToken', token.signinUser.token);
+    //         that.loading.dismiss();
+    //         that.navCtrl.push(TabsPage);
+    //         // this.appCtrl.getRootNav().push(TabsPage);
+    //         // env.nativeStorage.setItem('user',
+    //         // {
+    //         //   name: this.user.name,
+    //         //   email: this.user.email,
+    //         //   profileUrl: this.user.picture
+    //         // })
+    //         // .then(function(){
+    //         //   env.loading.dismiss();
+    //         //   env.navCtrl.push(TabsPage);
+    //         // }, function (error) {
+    //         //   console.log(error);
+    //         // });
+    //       }, (errors) => {
+    //         if (errors == "Error: GraphQL error: User already exists with that information") {
+    //           that.signInUser().then(({data}) => {
+    //             console.log("login");
+    //             console.log(data);
+    //             let token = <any>{};
+    //             token = data;
+    //             localStorage.setItem('graphcoolToken', token.signinUser.token);
+    //             that.loading.dismiss();
+    //             that.navCtrl.push(TabsPage);
+    //             // env.nativeStorage.setItem('user',
+    //             // {
+    //             //   name: this.user.name,
+    //             //   email: this.user.email,
+    //             //   profileUrl: this.user.picture
+    //             // })
+    //             // .then(function(){
+    //             //   env.loading.dismiss();
+    //             //   env.navCtrl.push(TabsPage);
+    //             // }, function (error) {
+    //             //   console.log(error);
+    //             // });
+    //           });
+    //         }
+    //       });
+    //     }), function(error){
+    //       this.loading.dismiss();
+    //       console.log(error);
+    //     }
+    //   }, function(error){
+    //     this.loading.dismiss();
+    //     console.log(error);
+    //   });
+    // }
   }
   //Creating graph.cool user
   createUser() {

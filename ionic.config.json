@@ -1,6 +1,6 @@
 {
   "name": "Squeel",
-  "app_id": "",
+  "app_id": "bcaa10ce",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

@@ -4,8 +4,11 @@ page-welcome {
     // background-size: cover;
     overflow-y: hidden !important;
   }
+  // .logo img {
+  //   src: url('../../assets/logo.png');
+  // }
   .form {
-    padding-top: 25vh;
+    padding-top: 20vh;
     margin: auto;
   }
   .terms {
@@ -16,8 +19,8 @@ page-welcome {
       color: #3b5998;
     }
   }
-  ion-icon {
-    padding-right: 2%;
-  }
+  // ion-icon {
+  //   padding-right: 5%;
+  // }
 
 }

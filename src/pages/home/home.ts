@@ -4,7 +4,6 @@ import { NavController, ModalController } from 'ionic-angular';
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 
 import { Angular2Apollo } from 'angular2-apollo';
-import { Subscription } from 'rxjs/Subscription'
 import gql from 'graphql-tag';
 import 'rxjs/add/operator/toPromise';
 
@@ -180,6 +179,13 @@ export class HomePage {
     }).toPromise().then(({data}) => {
       //Nothing
     });
+  }
+
+  doInfinite(infiniteScroll) {
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
   }
 
   compare(a,b) {
