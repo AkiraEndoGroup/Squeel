@@ -45,7 +45,7 @@
     </div>
     <div [ngSwitch]="filter">
       <ion-list *ngSwitchCase="'latest'">
-        <ion-item-sliding *ngFor="let squeel of squeelsData">
+        <ion-item-sliding *ngFor="let squeel of squeelsDataSliced">
           <ion-item >
             <ion-grid>
               <ion-row>
@@ -78,9 +78,12 @@
             </button>
           </ion-item-options>
         </ion-item-sliding>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </ion-list>
       <ion-list *ngSwitchCase="'topRated'">
-        <ion-item-sliding *ngFor="let squeel of squeelsTop" >
+        <ion-item-sliding *ngFor="let squeel of squeelsTopSliced" >
           <ion-item >
             <ion-grid>
               <ion-row>
@@ -113,10 +116,10 @@
             </button>
           </ion-item-options>
         </ion-item-sliding>
+        <ion-infinite-scroll (ionInfinite)="doInfinite2($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </ion-list>
     </div>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
   </div>
 </ion-content>

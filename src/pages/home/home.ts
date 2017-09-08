@@ -13,9 +13,13 @@ import 'rxjs/add/operator/toPromise';
 })
 export class HomePage {
 
+  squeelsLoaded: any;
+
   squeels = <any>[];
   squeelsData = <any>[];
+  squeelsDataSliced = <any>[];
   squeelsTop = <any>[];
+  squeelsTopSliced = <any>[];
   userId: any;
   team1Trophies: any = 0;
   team2Trophies: any = 0;
@@ -23,7 +27,7 @@ export class HomePage {
   filter: any = "latest";
 
   constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public modalCtrl: ModalController) {
-
+    this.squeelsLoaded = 10;
   }
 
   ionViewDidLoad() {
@@ -71,6 +75,8 @@ export class HomePage {
         this.squeelsTop.push(temp);
       }
       this.squeelsTop.sort(this.compare);
+      this.squeelsDataSliced = this.squeelsData.slice(0, 10);
+      this.squeelsTopSliced = this.squeelsTop.slice(0, 10);
       console.log(this.squeelsTop);
     })
 
@@ -131,6 +137,8 @@ export class HomePage {
         this.squeelsTop.push(temp);
       }
       this.squeelsTop.sort(this.compare);
+      this.squeelsDataSliced = this.squeelsData.slice(0, 10);
+      this.squeelsTopSliced = this.squeelsTop.slice(0, 10);
       console.log(this.squeelsTop);
     })
   }
@@ -182,6 +190,26 @@ export class HomePage {
   }
 
   doInfinite(infiniteScroll) {
+    for (let i = this.squeelsLoaded; i < this.squeelsLoaded + 10; i++) {
+      if (this.squeelsData[i]) {
+        console.log(this.squeelsData[i]);
+        this.squeelsDataSliced.push(this.squeelsData[i]);
+      }
+    }
+    this.squeelsLoaded+=10;
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+  }
+  doInfinite2(infiniteScroll) {
+    for (let i = this.squeelsLoaded; i < this.squeelsLoaded + 10; i++) {
+      if (this.squeelsData[i]) {
+        console.log(this.squeelsData[i]);
+        this.squeelsTopSliced.push(this.squeelsData[i]);
+      }
+    }
+    this.squeelsLoaded+=10;
     setTimeout(() => {
       console.log('Async operation has ended');
       infiniteScroll.complete();
