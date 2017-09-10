@@ -25,6 +25,7 @@ import { ApolloModule } from 'angular2-apollo';
 
 //Providers
 import { Facebook } from '@ionic-native/facebook';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
@@ -62,6 +63,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
+    TwitterConnect,
     NativeStorage
   ]
 })

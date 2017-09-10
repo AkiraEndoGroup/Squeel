@@ -15,7 +15,8 @@
     <ion-grid>
       <ion-row text-center>
         <ion-col col-2 id="oponent1">
-          <span class="circle1"></span>
+          <!-- <span class="circle1"></span> -->
+          <img src="assets/msu.png">
           <br>
           <span>MSU</span>
         </ion-col>
@@ -25,7 +26,8 @@
           <span>{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
         </ion-col>
         <ion-col col-2 id="oponent2">
-          <span class="circle2"></span>
+          <!-- <span class="circle2"></span> -->
+          <img src="assets/um.png">
           <br>
           <span>UofM</span>
         </ion-col>
@@ -39,7 +41,7 @@
           Latest
         </ion-segment-button>
         <ion-segment-button value="topRated">
-          Top Rated
+          Popular
         </ion-segment-button>
       </ion-segment>
     </div>
@@ -49,11 +51,11 @@
           <ion-item >
             <ion-grid>
               <ion-row>
-                <ion-col col-1 class="circle3" *ngIf="squeel.squeel.team == 1" text-center >
-
+                <ion-col col-1 class="circle" *ngIf="squeel.squeel.team == 1" text-center >
+                  <img src="assets/msu.png">
                 </ion-col>
-                <ion-col col-1 class="circle4" *ngIf="squeel.squeel.team == 2" text-center>
-
+                <ion-col col-1 class="circle" *ngIf="squeel.squeel.team == 2" text-center>
+                  <img src="assets/um.png">
                 </ion-col>
                 <ion-col col-9 text-wrap class="description">
                   <p> {{squeel.squeel.description}}</p>
@@ -87,11 +89,11 @@
           <ion-item >
             <ion-grid>
               <ion-row>
-                <ion-col col-1 class="circle3" *ngIf="squeel.squeel.team == 1" text-center>
-
+                <ion-col col-1 class="circle" *ngIf="squeel.squeel.team == 1" text-center>
+                  <img src="assets/msu.png">
                 </ion-col>
-                <ion-col col-1 class="circle4" *ngIf="squeel.squeel.team == 2" text-center>
-
+                <ion-col col-1 class="circle" *ngIf="squeel.squeel.team == 2" text-center>
+                  <img src="assets/um.png">
                 </ion-col>
                 <ion-col col-9 text-wrap class="description">
                   <p> {{squeel.squeel.description}}</p>

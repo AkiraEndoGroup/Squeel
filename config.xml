@@ -22,6 +22,8 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="TwitterConsumerKey" value="lYF1548GbE3FOwWEEfIUu08hk" />
+    <preference name="TwitterConsumerSecret" value="0ghUg7mOfz9SzEtUiZMUYB7uG2yLE5x0jGTQnkVOFR72mTE2tL" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -90,4 +92,7 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.2.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="twitter-connect-plugin" spec="^0.6.0">
+        <variable name="FABRIC_KEY" value="51f9d33732e213b0faaa962b730ee1080a6c9858" />
+    </plugin>
 </widget>

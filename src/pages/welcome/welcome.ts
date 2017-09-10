@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import 'rxjs/add/operator/toPromise';
 
 import { Facebook } from '@ionic-native/facebook';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { TabsPage } from '../tabs/tabs';
@@ -27,6 +28,7 @@ export class WelcomePage {
               public platform: Platform,
               public apollo: Angular2Apollo,
               public fb: Facebook,
+              public tw: TwitterConnect,
               public loadingCtrl: LoadingController,
               public nativeStorage: NativeStorage) {
 
@@ -148,6 +150,46 @@ export class WelcomePage {
     //     console.log(error);
     //   });
     // }
+  }
+
+  loginTwitter() {
+    let that = this;
+    this.loading = this.loadingCtrl.create({
+      content: 'Logging in...'
+    });
+    this.loading.present();
+    this.tw.login().then(function(result) {
+      //Get user data
+      that.tw.showUser().then(function(user){
+        console.log(user);
+        that.user = {picture: user.profile_image_url_https, name: user.name, email: "gugafflu@gmail.com"};
+        that.createUser().then(({data}) => {
+          console.log("create");
+          let token = <any>{};
+          token = data;
+          localStorage.setItem('graphcoolToken', token.signinUser.token);
+          that.loading.dismiss();
+          that.navCtrl.push(TabsPage);
+        }, (errors) => {
+            console.log(errors);
+          if (errors == "Error: GraphQL error: User already exists with that information") {
+            that.signInUser().then(({data}) => {
+              console.log("login");
+              let token = <any>{};
+              token = data;
+              localStorage.setItem('graphcoolToken', token.signinUser.token);
+              that.loading.dismiss();
+              that.navCtrl.push(TabsPage);
+            });
+          }
+        });
+      }), function(error){
+        this.loading.dismiss();
+        console.log(error);
+      }
+    }, function(error){
+        that.loading.dismiss();
+    });
   }
   //Creating graph.cool user
   createUser() {
