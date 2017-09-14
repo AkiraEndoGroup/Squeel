@@ -17,31 +17,58 @@
 
 <ion-content>
 
+  <!-- <div class="gameHeader">
+    <ion-grid>
+      <ion-row text-center>
+        <ion-col col-3 id="oponent1" [style.color]="game.oponent1color" class="team1" *ngIf="team == 'team1'">
+          <br>
+          <span>{{game.oponent1}}</span>
+        </ion-col>
+        <ion-col col-3 id="oponent1" class="noteam" *ngIf="!team || team == 'team2'" (tap)="selectTeam1()">
+          <br>
+          <span>{{game.oponent1}}</span>
+        </ion-col>
+        <ion-col col-6 id="stats">
+          <span class="score">please choose your team</span>
+          <br>
+        </ion-col>
+        <ion-col col-3 id="oponent1" class="team2" [style.color]="game.oponent2color" *ngIf="team == 'team2'">
+          <br>
+          <span>{{game.oponent2}}</span>
+        </ion-col>
+        <ion-col col-3 id="oponent1" class="noteam" *ngIf="!team || team == 'team1'" (tap)="selectTeam2()">
+          <br>
+          <span>{{game.oponent2}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
+
   <div class="gameHeader">
     <ion-grid>
       <ion-row text-center>
-        <ion-col col-2 id="oponent1" class="team1" *ngIf="team == 'team1'">
+        <ion-col col-3 id="oponent1" class="team1" *ngIf="team == 'team1'">
           <!-- <span class="circle1"></span> -->
           <br>
           <span>MSU</span>
         </ion-col>
-        <ion-col col-2 id="oponent1" class="noteam" *ngIf="!team || team == 'team2'" (tap)="selectTeam1()">
+        <ion-col col-3 id="oponent1" class="noteam" *ngIf="!team || team == 'team2'" (tap)="selectTeam1()">
           <!-- <span class="circle1"></span> -->
           <br>
           <span>MSU</span>
         </ion-col>
-        <ion-col col-8 id="stats">
+        <ion-col col-6 id="stats">
           <span class="score">please choose your team</span>
           <!-- <br> -->
           <!-- <span>3125 <ion-icon ios="ios-trophy-outline" md="md-trophy-outline"> </ion-icon> 3000</span> -->
           <br>
         </ion-col>
-        <ion-col col-2 id="oponent1" class="team2" *ngIf="team == 'team2'">
+        <ion-col col-3 id="oponent1" class="team2" *ngIf="team == 'team2'">
           <!-- <span class="circle1"></span> -->
           <br>
           <span>UofM</span>
         </ion-col>
-        <ion-col col-2 id="oponent1" class="noteam" *ngIf="!team || team == 'team1'" (tap)="selectTeam2()">
+        <ion-col col-3 id="oponent1" class="noteam" *ngIf="!team || team == 'team1'" (tap)="selectTeam2()">
           <!-- <span class="circle1"></span> -->
           <br>
           <span>UofM</span>

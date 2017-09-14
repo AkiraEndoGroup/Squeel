@@ -15,10 +15,12 @@ import 'rxjs/add/operator/toPromise';
 export class AddSqueelPage {
 
   form: FormGroup;
+  game: any;
   currentUser = <any>{};
   team: any = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public apollo: Angular2Apollo, public formBuilder: FormBuilder,public toastCtrl: ToastController) {
+    this.game = this.navParams.get('game');
 
     this.currentUserInfo().then(({data}) => {
       this.currentUser = data;

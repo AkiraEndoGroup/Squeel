@@ -23,9 +23,21 @@
   font-family: CenturyGothic;
   src: url("../assets/fonts/CenturyGothic.ttf");
 }
+@font-face {
+  font-family: Montserrat;
+  src: url("../assets/fonts/montserrat/Montserrat-Light.otf");
+}
+@font-face {
+  font-family: Lato;
+  src: url("../assets/fonts/Lato/Lato-Regular.ttf");
+}
+@font-face {
+  font-family: Gotham;
+  src: url("../assets/fonts/GothamRegular.otf");
+}
 // $font-family-base: 'CenturyGothic' !important;
 * {
-  font-family: 'CenturyGothic';
+  font-family: 'Gotham';
 }
 
 .toolbar-background{

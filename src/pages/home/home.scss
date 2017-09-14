@@ -1,12 +1,4 @@
 page-home {
-  @media (max-width: 320px) {
-      ion-content {
-          font-size: 0.7em;
-      }
-      .description {
-        padding-left: 15px;
-      }
-  }
   super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons {
     margin-top: 4%;
   }
@@ -22,28 +14,30 @@ page-home {
     box-shadow: 2px 2px 10px #888888;
   }
   #oponent1 img, #oponent2 img {
-    transform: scale(1.5) !important;
+    width: 50%;
+    transform: scale(2) rotate(45deg) !important;
   }
   .circle img {
-    transform: scale(3) !important;
+    transform: scale(3) rotate(45deg) !important;
     padding-right: 3px;
   }
 
   .gameHeader {
-    height: 100px;
-    // padding-top: 10px;
+    height: 150px;
+    padding-top: 15px;
     background-color: #daf5ff;
     font-size: 1.2em;
+    margin-bottom: 15px;
   }
   .circle1:before {
     content: ' \25C9';
     font-size: 40px;
-    color: #77D353;
+    // color: #77D353;
   }
   .circle2:before {
     content: ' \25C9';
     font-size: 40px;
-    color: #00A6FF;
+    // color: #00A6FF;
   }
   .circle3:before {
     content: ' \25C9';
@@ -91,10 +85,12 @@ page-home {
   }
   .trophies {
     margin: auto;
+
     span {
       color: grey;
     }
     ion-icon {
+      // font-weight: bold;
       font-size: 1.5em;
       color: #D5BA4B;
     }
@@ -115,6 +111,74 @@ page-home {
   .date {
     font-size: 0.7em;
     color: grey;
+  }
+  .gameDate {
+    // font-family: 'CenturyGothicBold';
+    font-style: italic;
+  }
+  .top {
+    color: #FFBE30;
+  }
+  .top ion-item, .top {
+    background-color: #343F4B;
+    p, span {
+      color: white !important;
+    }
+  }
+  .topSqueels {
+    font-weight: bold;
+    padding-top: 9px;
+    // font-size: 1.2em;
+  }
+  @media (max-width: 321px) {
+      ion-content {
+          font-size: 0.7em;
+      }
+      .description {
+        padding-left: 15px;
+      }
+      .gameHeader {
+        height: 100px !important;
+      }
+  }
+
+  @media (min-width: 768px) {
+      ion-content {
+          font-size: 1.2em;
+      }
+      .description {
+        padding-left: 15px;
+      }
+      #oponent1 img, #oponent2 img {
+        width: 50%;
+        transform: scale(1.2) rotate(45deg) !important;
+      }
+      .circle img {
+        transform: scale(1.5) rotate(45deg) !important;
+        padding-right: 3px;
+      }
+      .gameHeader {
+        height: 180px !important;
+      }
+  }
+  @media (min-width: 1024px) {
+      ion-content {
+          font-size: 1.5em;
+      }
+      .description {
+        padding-left: 15px;
+      }
+      #oponent1 img, #oponent2 img {
+        width: 50%;
+        transform: scale(1.2) rotate(45deg) !important;
+      }
+      .circle img {
+        transform: scale(1.5) rotate(45deg) !important;
+        padding-right: 3px;
+      }
+      .gameHeader {
+        height: 210px !important;
+      }
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { AddSqueelPage } from '../add-squeel/add-squeel';
+import { GameSqueelsPage } from '../game-squeels/game-squeels';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';
@@ -12,6 +13,8 @@ import 'rxjs/add/operator/toPromise';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  games = <any>[];
 
   squeelsLoaded: any;
 
@@ -28,6 +31,38 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public modalCtrl: ModalController) {
     this.squeelsLoaded = 10;
+
+    this.apollo.query({
+      query: gql`
+      query {
+        allGames(orderBy: date_ASC) {
+          oponent1
+          oponent1color
+          oponent2
+          oponent2color
+          date
+          squeels(orderBy: createdAt_DESC) {
+            id
+            description
+            createdAt
+            team
+            upvotes {
+              id
+            }
+            user {
+              id
+              profileUrl
+              name
+            }
+          }
+        }
+      }
+      `
+    }).toPromise().then(({data}) => {
+      console.log(data);
+      this.games = data;
+      this.games = this.games.allGames;
+    })
   }
 
   ionViewDidLoad() {
@@ -54,7 +89,6 @@ export class HomePage {
       }
       `,
     }).subscribe(({data})=> {
-      console.log(data);
       this.squeels = data;
       this.squeelsData = [];
       this.squeelsTop = [];
@@ -76,8 +110,7 @@ export class HomePage {
       }
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
-      this.squeelsTopSliced = this.squeelsTop.slice(0, 10);
-      console.log(this.squeelsTop);
+      this.squeelsTopSliced = this.squeelsTop.slice(0,3);
     })
 
   }
@@ -115,7 +148,6 @@ export class HomePage {
       `,
     }).refetch(({data})=> {
       // refresher.complete();
-      console.log(data);
       this.squeels = data;
       this.squeelsData = [];
       this.squeelsTop = [];
@@ -138,8 +170,7 @@ export class HomePage {
       }
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
-      this.squeelsTopSliced = this.squeelsTop.slice(0, 10);
-      console.log(this.squeelsTop);
+      this.squeelsTopSliced = this.squeelsTop.slice(0, 3);
     })
   }
 
@@ -222,5 +253,9 @@ export class HomePage {
     if (a.length < b.length)
       return 1;
     return 0;
+  }
+
+  gotoGame(game) {
+    this.navCtrl.push(GameSqueelsPage, {game: game});
   }
 }
