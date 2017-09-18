@@ -55,7 +55,7 @@
           <span>{{game.oponent1}}</span>
         </ion-col>
         <ion-col col-6 id="stats" text-center>
-          <span class="score">{{game.oponent1Score}} - {{game.oponent2Score}}</span><br>
+          <span class="score">{{game.oponent1Score}} - {{game.oponent2}}</span><br>
           <span>{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
         </ion-col>
         <ion-col col-3 id="oponent2">
@@ -105,10 +105,9 @@
             <!-- <ion-avatar item-start>
               <img [src]="squeel.squeel.user.profileUrl">
             </ion-avatar> -->
-            <p class="date"  *ngIf="squeel.squeel.team == 1">@{{squeel.squeel.user.username}}</p>
-            <span class="date"  *ngIf="squeel.squeel.team == 2">@{{squeel.squeel.user.username}}</span>
-            <p text-wrap class="description" [style.color]="oponent1Color" *ngIf="squeel.squeel.team == 1"> {{squeel.squeel.description}}</p>
-            <p text-wrap class="description" [style.color]="oponent2Color" *ngIf="squeel.squeel.team == 2"> {{squeel.squeel.description}}</p>
+            <p class="date" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1">@{{squeel.squeel.user.username}}</p>
+            <span class="date" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2">@{{squeel.squeel.user.username}}</span>
+            <p text-wrap class="description"> {{squeel.squeel.description}}</p>
             <span class="date">{{squeel.squeel.createdAt | date: 'MMM d - hh:mm a'}}</span>
             <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
               <span>{{squeel.length}}</span>

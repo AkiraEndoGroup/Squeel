@@ -41,7 +41,6 @@
 }
 
 .toolbar-background{
-  // background-color: #3d95ce;
   background-color: map-get($colors, primary);
   border: 0px !important;
 }
@@ -52,7 +51,7 @@
 .bar-button {
   color: white !important;
 }
-// .icon-md-primary {
-//   color: white;
-//   font-size: 1.5em;
-// }
+
+.popover-content {
+transition: all 3s ease-in-out;
+}
