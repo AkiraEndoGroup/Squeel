@@ -17,17 +17,29 @@ page-home {
     width: 50%;
     transform: scale(2) rotate(45deg) !important;
   }
+  .circle {
+    font-size: 0.5em;
+    span {
+      text-align: left;
+    }
+  }
   .circle img {
-    transform: scale(3) rotate(45deg) !important;
+    transform: scale(2) rotate(45deg) !important;
+    // display: block;
+    // border-radius: 50%;
+    // height: 10px;
+    // width: 10px;
+    // margin: 0 auto 0;
+    // margin-bottom: 10px;
     padding-right: 3px;
   }
 
   .gameHeader {
-    height: 150px;
+    height: 120px;
     padding-top: 15px;
     background-color: #daf5ff;
     font-size: 1.2em;
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
   }
   .circle1:before {
     content: ' \25C9';
@@ -75,7 +87,7 @@ page-home {
   }
   #stats {
     .score {
-      font-size: 1.3em;
+      font-size: 2em;
     }
     ion-icon {
       font-size: 1.4em;
@@ -119,16 +131,30 @@ page-home {
   .top {
     color: #FFBE30;
   }
-  .top ion-item, .top {
-    background-color: #343F4B;
-    p, span {
-      color: white !important;
-    }
-  }
   .topSqueels {
     font-weight: bold;
     padding-top: 9px;
-    // font-size: 1.2em;
+  }
+  #topgrid {
+    column-rule: 4px outset #ff00ff;
+  }
+  #topSqueeler img {
+    display: block;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 0 auto 0;
+  }
+  #topSqueeler  {
+    font-size: 0.7em;
+    color: #FFBE30
+  }
+  .description img {
+    // display: block;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    margin: 0 auto 0;
   }
   @media (max-width: 321px) {
       ion-content {
@@ -154,7 +180,7 @@ page-home {
         transform: scale(1.2) rotate(45deg) !important;
       }
       .circle img {
-        transform: scale(1.5) rotate(45deg) !important;
+        // transform: scale(1.5) rotate(45deg) !important;
         padding-right: 3px;
       }
       .gameHeader {
@@ -173,7 +199,7 @@ page-home {
         transform: scale(1.2) rotate(45deg) !important;
       }
       .circle img {
-        transform: scale(1.5) rotate(45deg) !important;
+        // transform: scale(1.5) rotate(45deg) !important;
         padding-right: 3px;
       }
       .gameHeader {

@@ -114,5 +114,11 @@
       </ion-item>
       <span class="charLeft" float-right>{{140 - form.value.description.length}}</span>
     </ion-list>
-    <button ion-button float-right block (tap)="squeel()" class="squeel"> Squeel </button>
+    <div text-center>
+      <ion-item>
+        <ion-label> Post anonymously </ion-label>
+        <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+      <button ion-button round (tap)="squeel()" class="squeel"><ion-icon name="create"></ion-icon></button>
+    </div>
   </form>

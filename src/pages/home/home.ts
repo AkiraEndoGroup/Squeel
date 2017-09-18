@@ -26,6 +26,8 @@ export class HomePage {
   userId: any;
   team1Trophies: any = 0;
   team2Trophies: any = 0;
+  oponent1Color: any = "Green";
+  oponent2Color: any = "Orange";
 
   filter: any = "latest";
 
@@ -52,7 +54,7 @@ export class HomePage {
             user {
               id
               profileUrl
-              name
+              username
             }
           }
         }
@@ -80,7 +82,7 @@ export class HomePage {
           user {
             id
             profileUrl
-            name
+            username
           }
         }
         user {
