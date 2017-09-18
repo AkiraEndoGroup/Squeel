@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, PopoverController } from 'ionic-angular';
 
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 import { GameSqueelsPage } from '../game-squeels/game-squeels';
+import { SqueelpopoverPage } from '../squeelpopover/squeelpopover';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';
@@ -27,27 +28,32 @@ export class HomePage {
   team1Trophies: any = 0;
   team2Trophies: any = 0;
   oponent1Color: any = "Green";
-  oponent2Color: any = "Orange";
+  oponent2Color: any = "#00274c";
 
   filter: any = "latest";
 
-  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
     this.squeelsLoaded = 10;
+  }
 
-    this.apollo.query({
+  getSqueels() {
+    return this.apollo.watchQuery({
       query: gql`
       query {
-        allGames(orderBy: date_ASC) {
+        allGames(orderBy: date_ASC, filter:{active: true}) {
           oponent1
           oponent1color
+          oponent1Score
           oponent2
           oponent2color
+          oponent2Score
           date
           squeels(orderBy: createdAt_DESC) {
             id
             description
             createdAt
             team
+            anonymous
             upvotes {
               id
             }
@@ -58,47 +64,24 @@ export class HomePage {
             }
           }
         }
-      }
-      `
-    }).toPromise().then(({data}) => {
-      console.log(data);
-      this.games = data;
-      this.games = this.games.allGames;
-    })
-  }
-
-  ionViewDidLoad() {
-    this.apollo.watchQuery({
-      query: gql`
-      query {
-        allSqueels(orderBy: createdAt_DESC) {
-          id
-          description
-          createdAt
-          team
-          upvotes {
-            id
-          }
-          user {
-            id
-            profileUrl
-            username
-          }
-        }
         user {
           id
         }
       }
-      `,
-    }).subscribe(({data})=> {
-      this.squeels = data;
+      `
+    })
+  }
+
+  ionViewDidLoad() {
+    this.getSqueels().subscribe(({data}) => {
+      this.games = data;
+      this.userId = this.games.user.id;
+      this.games = this.games.allGames;
       this.squeelsData = [];
       this.squeelsTop = [];
       this.team1Trophies = 0;
       this.team2Trophies = 0;
-      this.userId = this.squeels.user.id;
-      this.squeels = this.squeels.allSqueels;
-      for(let squeel of this.squeels) {
+      for(let squeel of this.games[0].squeels) {
         let voted = false;
         for(let voters of squeel.upvotes) {
           if (voters.id == this.userId) {
@@ -113,8 +96,7 @@ export class HomePage {
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
       this.squeelsTopSliced = this.squeelsTop.slice(0,3);
-    })
-
+    });
   }
 
   doRefresh(refresher) {
@@ -126,40 +108,16 @@ export class HomePage {
   }
 
   refresh(refresher) {
-    this.apollo.watchQuery({
-      query: gql`
-      query {
-        allSqueels(orderBy: createdAt_DESC) {
-          id
-          description
-          createdAt
-          team
-          upvotes {
-            id
-          }
-          user {
-            id
-            profileUrl
-            name
-          }
-        }
-        user {
-          id
-        }
-      }
-      `,
-    }).refetch(({data})=> {
-      // refresher.complete();
-      this.squeels = data;
+    this.getSqueels().refetch(({data})=> {
+      this.games = data;
+      this.userId = this.games.user.id;
+      this.games = this.games.allGames;
       this.squeelsData = [];
       this.squeelsTop = [];
       this.team1Trophies = 0;
       this.team2Trophies = 0;
-      this.userId = this.squeels.user.id;
-      this.squeels = this.squeels.allSqueels;
-      for(let squeel of this.squeels) {
+      for(let squeel of this.games[0].squeels) {
         let voted = false;
-
         for(let voters of squeel.upvotes) {
           if (voters.id == this.userId) {
             voted = true;
@@ -172,7 +130,7 @@ export class HomePage {
       }
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
-      this.squeelsTopSliced = this.squeelsTop.slice(0, 3);
+      this.squeelsTopSliced = this.squeelsTop.slice(0,3);
     })
   }
 
@@ -227,6 +185,10 @@ export class HomePage {
       if (this.squeelsData[i]) {
         console.log(this.squeelsData[i]);
         this.squeelsDataSliced.push(this.squeelsData[i]);
+      } else {
+        this.squeelsLoaded+=10;
+        infiniteScroll.complete();
+        return;
       }
     }
     this.squeelsLoaded+=10;
@@ -259,5 +221,11 @@ export class HomePage {
 
   gotoGame(game) {
     this.navCtrl.push(GameSqueelsPage, {game: game});
+  }
+  openPopOver(squeel) {
+    let popover = this.popoverCtrl.create(SqueelpopoverPage, {squeel: squeel}, { cssClass: 'custom-popover'});
+    popover.present({
+
+    });
   }
 }

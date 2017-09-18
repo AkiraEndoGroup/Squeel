@@ -23,6 +23,13 @@ page-home {
       text-align: left;
     }
   }
+  .featuredName {
+    font-size: 1.6em;
+    padding-top: 15px;
+  }
+  .description {
+    color: black;
+  }
   .circle img {
     transform: scale(2) rotate(45deg) !important;
     // display: block;
@@ -116,9 +123,6 @@ page-home {
       font-size: 1.5em;
       color: grey;
     }
-  }
-  p {
-    color: black !important;
   }
   .date {
     font-size: 0.7em;

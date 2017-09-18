@@ -28,7 +28,8 @@ export class AddSqueelPage {
     });
     this.form = formBuilder.group({
      description: ['', Validators.required],
-     category: ['', Validators.required]
+     category: ['', Validators.required],
+     anonymous: false
     });
   }
 
@@ -77,9 +78,10 @@ export class AddSqueelPage {
    this.apollo.mutate({
     mutation: gql`
     mutation createSqueel($description: String!,
+                        $anonymous: Boolean,
                         $userId: ID!,
                         $team: Int){
-      createSqueel(description: $description, userId: $userId, team: $team){
+      createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous){
                     id
                   }
                 }
@@ -87,7 +89,8 @@ export class AddSqueelPage {
     variables: {
       description: this.form.value.description,
       userId: this.currentUser.id,
-      team: (this.team == "team1") ? 1 : 2
+      team: (this.team == "team1") ? 1 : 2,
+      anonymous: this.form.value.anonymous
     }
   }).toPromise().then(({data}) => {
     this.form.value.description = "";

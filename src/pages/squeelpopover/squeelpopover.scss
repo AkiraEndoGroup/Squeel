@@ -1,0 +1,54 @@
+page-squeelpopover {
+  .description {
+    span {
+      // margin: auto;
+      // position: absolute;
+      // left: 50px;
+      // top: 15px;
+      // vertical-align: middle
+    }
+  }
+  ion-col {
+    margin: auto !important;
+    // color: black;
+  }
+  .description img {
+    // display: block;
+    // margin
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    // margin: auto;
+    margin: 0 auto 0;
+  }
+  .username {
+    color: grey;
+    font-size: 1.2em;
+  }
+  .date {
+    font-size: 0.7em;
+    color: grey;
+  }
+  .trophies {
+    margin: auto;
+    font-size: 1.3em;
+    span {
+      color: grey;
+    }
+    ion-icon {
+      font-size: 1.3em;
+      color: #D5BA4B;
+    }
+  }
+  .trophies2 {
+    margin: auto;
+    font-size: 1.3em;
+    span {
+      color: grey;
+    }
+    ion-icon {
+      font-size: 1.3em;
+      color: grey;
+    }
+  }
+}
