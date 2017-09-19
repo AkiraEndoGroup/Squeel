@@ -187,11 +187,12 @@ export class HomePage {
       if (this.squeelsData[i]) {
         console.log(this.squeelsData[i]);
         this.squeelsDataSliced.push(this.squeelsData[i]);
-      } else {
-        this.squeelsLoaded+=10;
-        infiniteScroll.complete();
-        return;
       }
+      // else {
+      //   this.squeelsLoaded+=10;
+      //   infiniteScroll.complete();
+      //   return;
+      // }
     }
     this.squeelsLoaded+=10;
     setTimeout(() => {
