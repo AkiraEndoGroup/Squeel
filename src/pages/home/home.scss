@@ -15,7 +15,7 @@ page-home {
   }
   #oponent1 img, #oponent2 img {
     width: 50%;
-    transform: scale(2) rotate(45deg) !important;
+    transform: scale(2) rotate(90deg) !important;
   }
   .circle {
     font-size: 0.5em;
@@ -31,7 +31,7 @@ page-home {
     color: black;
   }
   .circle img {
-    transform: scale(2) rotate(45deg) !important;
+    transform: scale(2) rotate(90deg) !important;
     // display: block;
     // border-radius: 50%;
     // height: 10px;
@@ -181,10 +181,10 @@ page-home {
       }
       #oponent1 img, #oponent2 img {
         width: 50%;
-        transform: scale(1.2) rotate(45deg) !important;
+        transform: scale(1.2) rotate(90deg) !important;
       }
       .circle img {
-        // transform: scale(1.5) rotate(45deg) !important;
+        // transform: scale(1.5) rotate(90deg) !important;
         padding-right: 3px;
       }
       .gameHeader {
@@ -200,10 +200,10 @@ page-home {
       }
       #oponent1 img, #oponent2 img {
         width: 50%;
-        transform: scale(1.2) rotate(45deg) !important;
+        transform: scale(1.2) rotate(90deg) !important;
       }
       .circle img {
-        // transform: scale(1.5) rotate(45deg) !important;
+        // transform: scale(1.5) rotate(90deg) !important;
         padding-right: 3px;
       }
       .gameHeader {

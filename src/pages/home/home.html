@@ -69,15 +69,17 @@
   <div id="squeels" *ngIf="squeelsData">
     <ion-list class="top">
       <div text-center class="topSqueels">
-          Top 3 Squeelers
+          Top 3
       </div>
       <ion-item>
         <ion-grid id="topgrid">
           <ion-row>
             <ion-col id="topSqueeler"  col-3 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
-              <img [src]="squeel.squeel.user.profileUrl" />
-              <span padding-top [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1" class="featuredName">@{{squeel.squeel.user.username}}</span>
-              <span padding-top [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span>
+              <!-- <img [src]="squeel.squeel.user.profileUrl" /> -->
+              <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon>
+              <p>1820</p>
+              <!-- <span padding-top [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1" class="featuredName">@{{squeel.squeel.user.username}}</span>
+              <span padding-top [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span> -->
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -111,7 +113,7 @@
             <span class="date" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{games[0].oponent1}}</span>
             <span class="date" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{games[0].oponent2}}</span>
             <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-            <span class="date">{{squeel.squeel.createdAt | date: 'MMM d - hh:mm a'}}</span>
+            <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
             <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
               <span>{{squeel.length}}</span>
               <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>

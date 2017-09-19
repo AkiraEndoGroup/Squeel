@@ -28,6 +28,7 @@
         "@ionic-native/twitter-connect": "^4.2.1",
         "@ionic/storage": "2.0.1",
         "angular2-apollo": "^0.9.0",
+        "angular2-moment": "^1.7.0",
         "apollo-client": "^1.9.2",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-console": "^1.0.5",

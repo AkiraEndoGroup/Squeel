@@ -19,6 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Autosize } from '../components/autosize';
 
+import { MomentModule } from 'angular2-moment';
+
 
 //Apollo config
 import { provideClient } from './client';
@@ -48,7 +50,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
   imports: [
     ApolloModule.withClient(provideClient),
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
