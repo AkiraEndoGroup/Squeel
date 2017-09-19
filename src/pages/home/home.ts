@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, PopoverController } from 'ionic-angular';
+import { NavController, ModalController, PopoverController, AlertController } from 'ionic-angular';
 
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 import { GameSqueelsPage } from '../game-squeels/game-squeels';
@@ -27,12 +27,12 @@ export class HomePage {
   userId: any;
   team1Trophies: any = 0;
   team2Trophies: any = 0;
-  oponent1Color: any = "Green";
-  oponent2Color: any = "#00274c";
+  oponent1Color: any;
+  oponent2Color: any;
 
   filter: any = "latest";
 
-  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public apollo: Angular2Apollo,public alertCtrl: AlertController, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
     this.squeelsLoaded = 10;
   }
 
@@ -77,6 +77,8 @@ export class HomePage {
       this.games = data;
       this.userId = this.games.user.id;
       this.games = this.games.allGames;
+      this.oponent1Color = this.games[0].oponent1color;
+      this.oponent2Color = this.games[0].oponent2color;
       this.squeelsData = [];
       this.squeelsTop = [];
       this.team1Trophies = 0;
@@ -227,5 +229,14 @@ export class HomePage {
     popover.present({
 
     });
+  }
+
+  report() {
+    let alert = this.alertCtrl.create({
+      title: 'Report Submitted!',
+      subTitle: 'Our team will keep an eye on that squeel!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

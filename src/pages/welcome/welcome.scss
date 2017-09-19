@@ -1,15 +1,38 @@
 page-welcome {
   ion-content {
+    color: white !important;
+    height: 100vh;
     // background-image: url('http://farm5.static.flickr.com/4012/5129806951_a92629f041_o.jpg');
     // background: linear-gradient(#FFFFFF, #ECE9E6);
     // background-size: cover;
     overflow-y: hidden !important;
   }
+  .background img {
+    position: absolute;
+    // // background-image: url('https://wallpaperscraft.com/image/field_football_tribunes_strips_lawn_11558_2160x3840.jpg');
+    // // background-size: cover;
+    height: 100%;
+    width: 100%;
+
+    z-index: -2;
+
+  }
+  .background-black {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #4f4f4f !important;
+    z-index: -1;
+    opacity: 0.9;
+  }
+  .logo {
+    padding-top: 15vh;
+  }
   // .logo img {
   //   src: url('../../assets/logo.png');
   // }
   .form {
-    padding-top: 20vh;
+    padding-top: 35vh !important;
     margin: auto;
   }
   .terms {
@@ -17,8 +40,15 @@ page-welcome {
     line-height: 1.5em;
     text-align: center;
     span {
-      color: #3b5998;
+      color: black;
     }
+  }
+  .facebook {
+    background-color: #3b5998;
+  }
+  .twitter {
+    margin-top: 15px;
+    background-color: #1DA1F2;
   }
   // ion-icon {
   //   padding-right: 5%;

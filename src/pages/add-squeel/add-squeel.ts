@@ -24,7 +24,9 @@ export class AddSqueelPage {
 
     this.currentUserInfo().then(({data}) => {
       this.currentUser = data;
+      this.game = this.currentUser.allGames[0];
       this.currentUser = this.currentUser.user;
+      console.log(this.game);
     });
     this.form = formBuilder.group({
      description: ['', Validators.required],
@@ -46,13 +48,20 @@ export class AddSqueelPage {
   currentUserInfo(){
    return this.apollo.query({
      query: gql`
-       query{
-         user{
-           id
-           profileUrl
-           name
-         }
+     query {
+       allGames(filter:{active: true}) {
+         id
+         oponent1
+         oponent1color
+         oponent1Score
+         oponent2
+         oponent2color
+         oponent2Score
        }
+       user {
+         id
+       }
+     }
      `
    }).toPromise();
  }
@@ -80,8 +89,9 @@ export class AddSqueelPage {
     mutation createSqueel($description: String!,
                         $anonymous: Boolean,
                         $userId: ID!,
-                        $team: Int){
-      createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous){
+                        $team: Int,
+                        $gameId: ID){
+      createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous, gameId: $gameId){
                     id
                   }
                 }
@@ -90,7 +100,8 @@ export class AddSqueelPage {
       description: this.form.value.description,
       userId: this.currentUser.id,
       team: (this.team == "team1") ? 1 : 2,
-      anonymous: this.form.value.anonymous
+      anonymous: this.form.value.anonymous,
+      gameId: this.game.id
     }
   }).toPromise().then(({data}) => {
     this.form.value.description = "";
