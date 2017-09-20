@@ -20,7 +20,7 @@
     <div id="profile-info" padding *ngIf="user">
       <img id="profile-image" [src]="user.profileUrl">
       <h3 id="profile-name">{{user.name}}</h3>
-      <h5> <ion-icon ios="ios-pin" md="md-pin"></ion-icon> East Lansing, MI </h5>
+      <h5> @{{user.username}} </h5>
       <!-- <button ion-button small outline class="follow-button" (click)="goToSettingsPage()">Edit Profile</button> -->
       <ion-row class="profile-numbers">
         <ion-col col-6 >

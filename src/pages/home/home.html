@@ -77,7 +77,7 @@
             <ion-col id="topSqueeler"  col-3 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
               <!-- <img [src]="squeel.squeel.user.profileUrl" /> -->
               <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon>
-              <p>1820</p>
+              <p>{{squeel.length}}</p>
               <!-- <span padding-top [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1" class="featuredName">@{{squeel.squeel.user.username}}</span>
               <span padding-top [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span> -->
             </ion-col>
@@ -108,10 +108,10 @@
             <!-- <ion-avatar item-start>
               <img [src]="squeel.squeel.user.profileUrl">
             </ion-avatar> -->
-            <p class="date" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-            <span class="date" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
-            <span class="date" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{games[0].oponent1}}</span>
-            <span class="date" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{games[0].oponent2}}</span>
+            <p class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+            <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
+            <span class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{games[0].oponent1}}</span>
+            <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{games[0].oponent2}}</span>
             <p text-wrap class="description"> {{squeel.squeel.description}}</p>
             <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
             <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">

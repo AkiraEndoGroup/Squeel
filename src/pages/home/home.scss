@@ -128,6 +128,9 @@ page-home {
     font-size: 0.7em;
     color: grey;
   }
+  .name {
+    font-weight: bold;
+  }
   .gameDate {
     // font-family: 'CenturyGothicBold';
     font-style: italic;
@@ -148,6 +151,17 @@ page-home {
     height: 50px;
     width: 50px;
     margin: 0 auto 0;
+  }
+  #topSqueeler:first-child {
+    // padding-top: 20px;
+    font-size: 3em;
+  }
+  #topSqueeler:nth-child(2) {
+    font-size: 4em;
+  }
+  #topSqueeler:nth-child(3) {
+    // padding-top: 40px;
+    font-size: 2em;
   }
   #topSqueeler  {
     font-size: 0.7em;

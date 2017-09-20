@@ -139,6 +139,11 @@ export class HomePage {
   createSqueel() {
     let modal = this.modalCtrl.create(AddSqueelPage);
     modal.present();
+    modal.onDidDismiss(squeel => {
+      console.log(squeel);
+      let temp = {squeel: squeel.createSqueel, voted: false, length: 0};
+      this.squeelsDataSliced.unshift(temp);
+    });
   }
 
   upvote(squeel) {

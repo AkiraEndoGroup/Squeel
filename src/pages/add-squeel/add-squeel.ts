@@ -93,6 +93,18 @@ export class AddSqueelPage {
                         $gameId: ID){
       createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous, gameId: $gameId){
                     id
+                    description
+                    createdAt
+                    team
+                    anonymous
+                    upvotes {
+                      id
+                    }
+                    user {
+                      id
+                      profileUrl
+                      username
+                    }
                   }
                 }
     `,
@@ -111,7 +123,7 @@ export class AddSqueelPage {
        position: 'top'
      });
      toast.present();
-     this.viewCtrl.dismiss();
+     this.viewCtrl.dismiss(data);
   });
  }
 

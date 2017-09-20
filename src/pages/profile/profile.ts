@@ -49,6 +49,7 @@ export class ProfilePage {
           name
           email
           profileUrl
+          username
           squeels(orderBy: createdAt_DESC) {
             id
             description
