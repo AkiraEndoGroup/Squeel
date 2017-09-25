@@ -48,20 +48,23 @@
   </div> -->
   <div class="gameHeader" *ngFor="let game of games">
     <ion-grid>
-      <ion-row text-center>
+      <ion-row text-center padding-top>
         <ion-col col-3 id="oponent1">
-          <img src="assets/msu.png">
+          <img [src]="game.oponent1Image">
           <br>
-          <span>{{game.oponent1}}</span>
+          <br>
+          <span padding-top>{{game.oponent1}}</span>
         </ion-col>
         <ion-col col-6 id="stats" text-center>
           <span class="score">{{game.oponent1Score}} - {{game.oponent2Score}}</span><br>
           <span>{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
         </ion-col>
         <ion-col col-3 id="oponent2">
-          <img src="assets/um.png">
+          <!-- <img src="assets/um.png"> -->
+          <img [src]="game.oponent2Image">
           <br>
-          <span>{{game.oponent2}}</span>
+          <br>
+          <span padding-top>{{game.oponent2}}</span>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -75,11 +78,11 @@
         <ion-grid id="topgrid">
           <ion-row>
             <ion-col id="topSqueeler"  col-3 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
-              <!-- <img [src]="squeel.squeel.user.profileUrl" /> -->
-              <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon>
-              <p>{{squeel.length}}</p>
-              <!-- <span padding-top [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1" class="featuredName">@{{squeel.squeel.user.username}}</span>
-              <span padding-top [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span> -->
+              <img [src]="squeel.squeel.user.profileUrl" />
+              <!-- <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> -->
+              <h2 padding-top>{{squeel.length}}</h2>
+              <span padding-top class="featuredName" text-wrap>@{{squeel.squeel.user.username}}</span>
+              <!-- <span padding-top   *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span> -->
             </ion-col>
           </ion-row>
         </ion-grid>

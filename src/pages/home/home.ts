@@ -44,9 +44,11 @@ export class HomePage {
           oponent1
           oponent1color
           oponent1Score
+          oponent1Image
           oponent2
           oponent2color
           oponent2Score
+          oponent2Image
           date
           squeels(orderBy: createdAt_DESC) {
             id
@@ -141,8 +143,10 @@ export class HomePage {
     modal.present();
     modal.onDidDismiss(squeel => {
       console.log(squeel);
-      let temp = {squeel: squeel.createSqueel, voted: false, length: 0};
-      this.squeelsDataSliced.unshift(temp);
+      if (squeel) {
+        let temp = {squeel: squeel.createSqueel, voted: false, length: 0};
+        this.squeelsDataSliced.unshift(temp);
+      }
     });
   }
 

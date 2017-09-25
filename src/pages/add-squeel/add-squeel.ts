@@ -54,9 +54,11 @@ export class AddSqueelPage {
          oponent1
          oponent1color
          oponent1Score
+         oponent1Image
          oponent2
          oponent2color
          oponent2Score
+         oponent2Image
        }
        user {
          id

@@ -14,7 +14,9 @@ page-home {
     box-shadow: 2px 2px 10px #888888;
   }
   #oponent1 img, #oponent2 img {
-    width: 50%;
+    width: 20%;
+    // padding-right: 15px;
+    // padding-left: 15px;
     transform: scale(2) rotate(90deg) !important;
   }
   .circle {
@@ -24,7 +26,7 @@ page-home {
     }
   }
   .featuredName {
-    font-size: 1.6em;
+    font-size: 0.8em;
     padding-top: 15px;
   }
   .description {
@@ -154,18 +156,21 @@ page-home {
   }
   #topSqueeler:first-child {
     // padding-top: 20px;
-    font-size: 3em;
+
+    color: #FFC324 !important;
+    // font-size: 3em;
   }
   #topSqueeler:nth-child(2) {
-    font-size: 4em;
+    color: #A0A7AD !important;
+    // font-size: 4em;
   }
   #topSqueeler:nth-child(3) {
     // padding-top: 40px;
-    font-size: 2em;
+    color: #BB7760;
+    // font-size: 2em;
   }
-  #topSqueeler  {
-    font-size: 0.7em;
-    color: #FFBE30
+  #topSqueeler p {
+    font-size: 1.2em;
   }
   .description img {
     // display: block;
@@ -184,6 +189,9 @@ page-home {
       .gameHeader {
         height: 100px !important;
       }
+      .featuredName {
+        font-size: 0.5em;
+      }
   }
 
   @media (min-width: 768px) {
@@ -194,7 +202,7 @@ page-home {
         // padding-left: 15px;
       }
       #oponent1 img, #oponent2 img {
-        width: 50%;
+        width: 30%;
         transform: scale(1.2) rotate(90deg) !important;
       }
       .circle img {
@@ -213,7 +221,7 @@ page-home {
         // padding-left: 15px;
       }
       #oponent1 img, #oponent2 img {
-        width: 50%;
+        width: 30%;
         transform: scale(1.2) rotate(90deg) !important;
       }
       .circle img {
@@ -222,6 +230,9 @@ page-home {
       }
       .gameHeader {
         height: 210px !important;
+      }
+      .featuredName {
+        font-size: 1.2em;
       }
   }
 

@@ -5,16 +5,19 @@ page-add-squeel {
     background-color: #daf5ff;
     font-size: 1.2em;
   }
-  .team1:before {
-    content: ' \25C9';
-    font-size: 40px;
-    color: #77D353;
+  img {
+    width: 40%;
   }
-  .team2:before {
-    content: ' \25C9';
-    font-size: 40px;
-    color: #00A6FF;
-  }
+  // .team1:before {
+  //   content: ' \25C9';
+  //   font-size: 40px;
+  //   color: #77D353;
+  // }
+  // .team2:before {
+  //   content: ' \25C9';
+  //   font-size: 40px;
+  //   color: #00A6FF;
+  // }
   .noteam:before {
     content: ' \25C9';
     font-size: 40px;
