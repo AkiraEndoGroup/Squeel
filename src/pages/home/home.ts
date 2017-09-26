@@ -100,6 +100,7 @@ export class HomePage {
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
       this.squeelsTopSliced = this.squeelsTop.slice(0,3);
+      console.log(this.squeelsTopSliced);
     });
   }
 
