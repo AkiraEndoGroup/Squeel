@@ -104,7 +104,7 @@ export class WelcomePage {
             localStorage.setItem('graphcoolToken', token.signinUser.token);
             that.loading.dismiss();
             // that.navCtrl.push(TabsPage);
-            this.navCtrl.push(SetUsernamePage);
+            that.navCtrl.push(SetUsernamePage);
             // this.appCtrl.getRootNav().push(TabsPage);
             // env.nativeStorage.setItem('user',
             // {
@@ -173,7 +173,7 @@ export class WelcomePage {
           localStorage.setItem('graphcoolToken', token.signinUser.token);
           that.loading.dismiss();
           // that.navCtrl.push(TabsPage);
-          this.navCtrl.push(SetUsernamePage);
+          that.navCtrl.push(SetUsernamePage);
         }, (errors) => {
             console.log(errors);
           if (errors == "Error: GraphQL error: User already exists with that information") {

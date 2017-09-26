@@ -1,6 +1,6 @@
 <ion-content>
   <div class="background" >
-    <img src="https://wallpaperscraft.com/image/field_football_tribunes_strips_lawn_11558_2160x3840.jpg" />
+    <img src="assets/background.jpg" />
     <div class="background-black"></div>
   </div>
   <div class="logo" padding-horizontal text-center>
@@ -8,10 +8,9 @@
     <p padding-top>Squeel something funny, get trophies and fight for your team.</p>
     <!-- <p> Quickly Continue </p> -->
   </div>
-  <div class="form" text-center padding>
+  <ion-footer class="form" text-center padding>
     <button ion-button (tap)="loginFacebook()" round block class="facebook" icon-left padding> <ion-icon ios="logo-facebook" md="logo-facebook" ></ion-icon> Connect with Facebook </button>
     <button ion-button (tap)="loginTwitter()" round block class="twitter" icon-left padding> <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon> Connect with Twitter </button>
     <div class="terms"> By registering, you agree to our <span>Terms and Conditions</span> and <span>Privacy policy</span>.</div>
-  </div>
-
+  </ion-footer>
 </ion-content>

@@ -41,13 +41,13 @@ import { NativeStorage } from '@ionic-native/native-storage';
     ContactPage,
     HomePage,
     TabsPage,
-    WelcomePage,
-    ProfilePage,
-    AddSqueelPage,
-    SettingsPage,
-    GameSqueelsPage,
-    SqueelpopoverPage,
-    SetUsernamePage
+    // WelcomePage,
+    // ProfilePage,
+    // AddSqueelPage,
+    // SettingsPage,
+    // GameSqueelsPage,
+    // SqueelpopoverPage,
+    // SetUsernamePage
   ],
   imports: [
     ApolloModule.withClient(provideClient),
