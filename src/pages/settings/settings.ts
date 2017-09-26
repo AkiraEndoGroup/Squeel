@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
-/**
- * Generated class for the SettingsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Angular2Apollo } from 'angular2-apollo';
+import gql from 'graphql-tag';
+import 'rxjs/add/operator/toPromise';
 
 @IonicPage()
 @Component({
@@ -16,8 +15,11 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 export class SettingsPage {
 
   loading: any;
+  form: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  userId = <any>{};
+
+  constructor(public navCtrl: NavController,public apollo: Angular2Apollo, public navParams: NavParams,public formBuilder: FormBuilder, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
   }
 
   logoutUser() {

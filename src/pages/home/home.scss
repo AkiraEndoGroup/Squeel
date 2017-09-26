@@ -179,6 +179,11 @@ page-home {
     width: 25px;
     margin: 0 auto 0;
   }
+  @media (max-width: 400px) and (min-width: 322px) {
+      .featuredName {
+        font-size: 0.7em;
+      }
+  }
   @media (max-width: 321px) {
       ion-content {
           font-size: 0.7em;

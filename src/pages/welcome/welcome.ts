@@ -11,6 +11,7 @@ import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { TabsPage } from '../tabs/tabs';
+import { SetUsernamePage } from '../set-username/set-username';
 
 @IonicPage()
 @Component({
@@ -40,7 +41,7 @@ export class WelcomePage {
 
     //If platform is browser
     if (this.platform.is('core') || this.platform.is('mobileweb')) {
-      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
+      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu3@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
       console.log(this.user);
       this.loading = this.loadingCtrl.create({
         content: 'Logging in...'
@@ -54,7 +55,7 @@ export class WelcomePage {
           token = data;
           localStorage.setItem('graphcoolToken', token.signinUser.token);
           this.loading.dismiss();
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.push(SetUsernamePage);
         }
       }, (errors) => {
         //In case user already exists, only do signIn
@@ -102,7 +103,8 @@ export class WelcomePage {
             token = data;
             localStorage.setItem('graphcoolToken', token.signinUser.token);
             that.loading.dismiss();
-            that.navCtrl.push(TabsPage);
+            // that.navCtrl.push(TabsPage);
+            this.navCtrl.push(SetUsernamePage);
             // this.appCtrl.getRootNav().push(TabsPage);
             // env.nativeStorage.setItem('user',
             // {
@@ -170,7 +172,8 @@ export class WelcomePage {
           token = data;
           localStorage.setItem('graphcoolToken', token.signinUser.token);
           that.loading.dismiss();
-          that.navCtrl.push(TabsPage);
+          // that.navCtrl.push(TabsPage);
+          this.navCtrl.push(SetUsernamePage);
         }, (errors) => {
             console.log(errors);
           if (errors == "Error: GraphQL error: User already exists with that information") {
@@ -206,12 +209,17 @@ export class WelcomePage {
           profileUrl: $profileUrl,
           name: $name) {
           id
+          username
         }
         signinUser(email: {
           email: $email
           password: $name
         }) {
           token
+          user {
+            id
+            username
+          }
         }
       }
     `,
@@ -231,6 +239,10 @@ export class WelcomePage {
           password: $name
         }) {
           token
+          user {
+            id
+            username
+          }
         }
       }
     `,

@@ -1,0 +1,31 @@
+page-set-username {
+  ion-content {
+    background-color: map-get($colors, "primary") !important;
+    color: white !important;
+    text-align: center;
+  }
+  .vertical-align-content > *
+  {
+       display: flex!important;
+       align-content: center!important;
+       align-items: center!important;
+  }
+  ion-list {
+    width: 100% !important;
+  }
+  ion-item {
+    background-color: transparent !important;
+    border-bottom: 3px solid white !important;
+    color: white !important;
+  }
+  .formSubmit {
+    margin-top: 50px !important;
+  }
+  input {
+    text-align: center;
+  }
+  input::-webkit-input-placeholder {
+    color: #ededed !important;
+  }
+
+}

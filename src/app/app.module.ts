@@ -13,6 +13,7 @@ import { AddSqueelPage } from '../pages/add-squeel/add-squeel';
 import { SettingsPage } from '../pages/settings/settings';
 import { GameSqueelsPage } from '../pages/game-squeels/game-squeels';
 import { SqueelpopoverPage } from '../pages/squeelpopover/squeelpopover';
+import { SetUsernamePage } from '../pages/set-username/set-username';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,7 +46,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     AddSqueelPage,
     SettingsPage,
     GameSqueelsPage,
-    SqueelpopoverPage
+    SqueelpopoverPage,
+    SetUsernamePage
   ],
   imports: [
     ApolloModule.withClient(provideClient),
@@ -65,7 +67,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     AddSqueelPage,
     SettingsPage,
     GameSqueelsPage,
-    SqueelpopoverPage
+    SqueelpopoverPage,
+    SetUsernamePage
   ],
   providers: [
     StatusBar,

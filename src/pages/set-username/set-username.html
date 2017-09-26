@@ -1,0 +1,18 @@
+<ion-content padding class="vertical-align-content">
+
+  <ion-list inset>
+    <h2>Create Username </h2>
+    <form [formGroup]="form">
+    <ion-item margin-bottom>
+      <!-- <ion-label>Username</ion-label> -->
+
+        <ion-input formControlName="username" type="text" placeholder="e.g. @strider_91"></ion-input>
+
+    </ion-item>
+
+    <button class="formSubmit" ion-button block round color="secondary" (tap)="createUsername()"> Submit </button>
+      </form>
+
+  </ion-list>
+
+</ion-content>
