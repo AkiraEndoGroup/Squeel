@@ -267,10 +267,33 @@ export class HomePage {
     });
   }
 
-  report() {
+  report(squeel) {
+    this.apollo.mutate({
+      mutation: gql`
+      mutation addToSqueelOnReport($reportsSqueelId: ID!, $reportsUserId: ID!) {
+        addToSqueelOnReport(reportsSqueelId: $reportsSqueelId, reportsUserId: $reportsUserId) {
+          reportsUser {
+            id
+          }
+        }
+      }
+      `, variables: {
+        reportsSqueelId: squeel.squeel.id,
+        reportsUserId: this.userId
+      }
+    });
     let alert = this.alertCtrl.create({
       title: 'Report Submitted!',
       subTitle: 'Our team will keep an eye on that squeel!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  tellMore() {
+    let alert = this.alertCtrl.create({
+      title: 'Stay tuned! ',
+      subTitle: 'More games and sports are coming soon.',
       buttons: ['OK']
     });
     alert.present();

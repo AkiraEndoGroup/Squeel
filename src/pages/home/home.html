@@ -1,6 +1,11 @@
   <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="tellMore()">
+         <ion-icon name="american-football"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -109,7 +114,7 @@
             </ion-note>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="danger" (tap)="report()">
+            <button ion-button color="danger" (tap)="report(squeel)">
               <ion-icon name="flag"></ion-icon>
               Report
             </button>
