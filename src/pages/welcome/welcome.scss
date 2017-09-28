@@ -1,7 +1,8 @@
 page-welcome {
   ion-content {
     color: white !important;
-    height: 100%;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
   }
   .background img {
     position: absolute;
@@ -18,7 +19,7 @@ page-welcome {
     opacity: 0.7;
   }
   .logo {
-    padding-top: 15vh;
+    padding-top: 10vh;
   }
   .form {
     margin: auto;

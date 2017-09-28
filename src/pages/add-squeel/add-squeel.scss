@@ -1,23 +1,18 @@
 page-add-squeel {
+  ion-content {
+    font-family: 'Gotham' !important;
+  }
+  textarea {
+    font-family: 'Gotham' !important;
+  }
   .gameHeader {
     height: 100px;
-    // padding-top: 10px;
     background-color: #daf5ff;
     font-size: 1.2em;
   }
   img {
     width: 40%;
   }
-  // .team1:before {
-  //   content: ' \25C9';
-  //   font-size: 40px;
-  //   color: #77D353;
-  // }
-  // .team2:before {
-  //   content: ' \25C9';
-  //   font-size: 40px;
-  //   color: #00A6FF;
-  // }
   .noteam:before {
     content: ' \25C9';
     font-size: 40px;
@@ -53,13 +48,6 @@ page-add-squeel {
   }
 
   #stats {
-    // .score {
-    //   font-size: 1.2em;
-    // }
-    // ion-icon {
-    //   font-size: 1.4em;
-    //   color: #D5BA4B;
-    // }
     color: grey;
   }
 }

@@ -6,6 +6,11 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
+    <allow-navigation href="http://localhost:8080/*" />
+    <feature name="CDVWKWebViewEngine">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -22,8 +27,8 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference name="TwitterConsumerKey" value="lYF1548GbE3FOwWEEfIUu08hk" />
-    <preference name="TwitterConsumerSecret" value="0ghUg7mOfz9SzEtUiZMUYB7uG2yLE5x0jGTQnkVOFR72mTE2tL" />
+    <preference name="TwitterConsumerKey" value="6e18jtpD2CvXpRnSpc5Nrf8cF" />
+    <preference name="TwitterConsumerSecret" value="n11WbwS7u942lEHBH2e9PNc7JiHgqrh4BrNQ5NBTCcQKUlmWwq" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -87,12 +92,13 @@
         <variable name="APP_ID" value="117061515679147" />
         <variable name="APP_NAME" value="Squeel" />
     </plugin>
+    <plugin name="cordova-plugin-ionic-webview" spec="^1.1.8" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="git+https://github.com/apache/cordova-plugin-statusbar.git" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="twitter-connect-plugin" spec="^0.6.0">
-        <variable name="FABRIC_KEY" value="51f9d33732e213b0faaa962b730ee1080a6c9858" />
+        <variable name="FABRIC_KEY" value="c4fa00cdcf4f1040a1ea74281f7e225bbebbbe43" />
     </plugin>
 </widget>

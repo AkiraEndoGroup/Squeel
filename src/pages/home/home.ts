@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, PopoverController, AlertController } from 'ionic-angular';
+import { NavController, ModalController, PopoverController, AlertController, LoadingController } from 'ionic-angular';
 
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 import { GameSqueelsPage } from '../game-squeels/game-squeels';
@@ -16,7 +16,7 @@ import 'rxjs/add/operator/toPromise';
 export class HomePage {
 
   games = <any>[];
-
+  loading: any;
   squeelsLoaded: any;
 
   squeels = <any>[];
@@ -32,7 +32,7 @@ export class HomePage {
 
   filter: any = "latest";
 
-  constructor(public navCtrl: NavController, public apollo: Angular2Apollo,public alertCtrl: AlertController, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public apollo: Angular2Apollo,public alertCtrl: AlertController, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
     this.squeelsLoaded = 10;
   }
 
@@ -64,6 +64,14 @@ export class HomePage {
               profileUrl
               username
             }
+            game {
+              oponent1
+              oponent1Image
+              oponent1color
+              oponent2
+              oponent2Image
+              oponent2color
+            }
           }
         }
         user {
@@ -75,6 +83,12 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Finding squeels...'
+    });
+    this.loading.present();
+
+
     this.getSqueels().subscribe(({data}) => {
       this.games = data;
       this.userId = this.games.user.id;
@@ -101,6 +115,7 @@ export class HomePage {
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
       this.squeelsTopSliced = this.squeelsTop.slice(0,3);
       console.log(this.squeelsTopSliced);
+      this.loading.dismiss();
     });
   }
 
@@ -154,6 +169,11 @@ export class HomePage {
   upvote(squeel) {
     squeel.voted = true;
     squeel.length++;
+    if (squeel.squeel.team == 1) {
+      this.team1Trophies++;
+    } else {
+      this.team2Trophies++;
+    }
     this.apollo.mutate({
       mutation: gql`
       mutation addToSqueelOnUpvote($upvotesUserId: ID!, $likesSqueelId: ID!) {
@@ -174,6 +194,11 @@ export class HomePage {
   downvote(squeel) {
     squeel.voted = false;
     squeel.length--;
+    if (squeel.squeel.team == 1) {
+      this.team1Trophies--;
+    } else {
+      this.team2Trophies--;
+    }
     this.apollo.mutate({
       mutation: gql`
       mutation removeFromSqueelOnUpvote($upvotesUserId: ID!, $likesSqueelId: ID!) {

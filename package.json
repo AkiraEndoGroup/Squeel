@@ -34,6 +34,7 @@
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-facebook4": "^1.9.1",
+        "cordova-plugin-ionic-webview": "^1.1.8",
         "cordova-plugin-nativestorage": "^2.2.2",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "git+https://github.com/apache/cordova-plugin-statusbar.git",
@@ -43,6 +44,7 @@
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
         "rxjs": "5.4.0",
+        "sos": "^1.4.0",
         "sw-toolbox": "3.6.0",
         "twitter-connect-plugin": "^0.6.0",
         "zone.js": "0.8.12"
@@ -66,9 +68,10 @@
             },
             "cordova-plugin-nativestorage": {},
             "twitter-connect-plugin": {
-                "FABRIC_KEY": "51f9d33732e213b0faaa962b730ee1080a6c9858"
+                "FABRIC_KEY": "c4fa00cdcf4f1040a1ea74281f7e225bbebbbe43"
             },
-            "cordova-plugin-statusbar": {}
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-ionic-webview": {}
         },
         "platforms": [
             "ios"

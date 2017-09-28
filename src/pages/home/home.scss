@@ -26,8 +26,9 @@ page-home {
     }
   }
   .featuredName {
-    font-size: 0.8em;
+    font-size: 0.9em;
     padding-top: 15px;
+    font-weight: bold;
   }
   .description {
     color: black;
@@ -44,7 +45,7 @@ page-home {
   }
 
   .gameHeader {
-    height: 120px;
+    height: 130px;
     padding-top: 15px;
     background-color: #daf5ff;
     font-size: 1.2em;
@@ -73,26 +74,6 @@ page-home {
   ion-col {
     margin: auto !important;
     // color: black;
-  }
-  @keyframes fadeInLoad {
-    from {
-        opacity:0;
-    }
-    to {
-    }
-  }
-  @keyframes slideInDown {
-    from {
-      transform: translate3d(0, -100%, 0);
-      visibility: visible;
-    }
-
-    to {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  ion-label {
-    // animation: fadeInLoad 3s;
   }
   #stats {
     .score {

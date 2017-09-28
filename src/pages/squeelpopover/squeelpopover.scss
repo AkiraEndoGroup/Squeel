@@ -12,18 +12,19 @@ page-squeelpopover {
     margin: auto !important;
     // color: black;
   }
+  .description {
+    color: black !important;
+  }
   .description img {
-    // display: block;
-    // margin
     border-radius: 50%;
     height: 40px;
     width: 40px;
     // margin: auto;
     margin: 0 auto 0;
   }
-  .username {
-    color: grey;
-    font-size: 1.2em;
+  .name {
+    font-size: 0.7em;
+    font-weight: bold;
   }
   .date {
     font-size: 0.7em;
