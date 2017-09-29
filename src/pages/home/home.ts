@@ -293,7 +293,7 @@ export class HomePage {
   tellMore() {
     let alert = this.alertCtrl.create({
       title: 'Stay tuned! ',
-      subTitle: 'More games and sports are coming soon.',
+      subTitle: 'More games and sports are coming soon!',
       buttons: ['OK']
     });
     alert.present();
