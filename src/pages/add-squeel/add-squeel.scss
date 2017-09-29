@@ -12,6 +12,7 @@ page-add-squeel {
   }
   img {
     width: 40%;
+    margin: 10px;
   }
   .noteam:before {
     content: ' \25C9';
@@ -49,5 +50,10 @@ page-add-squeel {
 
   #stats {
     color: grey;
+  }
+  @media (min-width: 700px) {
+    img {
+      width: 30%;
+    }
   }
 }

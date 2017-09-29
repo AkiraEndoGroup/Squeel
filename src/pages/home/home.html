@@ -83,6 +83,9 @@
         <ion-grid id="topgrid">
           <ion-row *ngIf="squeelsTopSliced.length > 0">
             <ion-col id="topSqueeler"  col-3 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
+              <h2 *ngIf="squeel == squeelsTopSliced[0]">$100</h2>
+              <h2 *ngIf="squeel == squeelsTopSliced[1]">$25</h2>
+              <h2 *ngIf="squeel == squeelsTopSliced[2]">$5</h2>
               <img *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
               <img *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous" [src]="squeel.squeel.game.oponent1Image" style="transform: rotate(90deg)"/>
               <img *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous" [src]="squeel.squeel.game.oponent2Image" style="transform: rotate(90deg)" />

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 
+import { Angular2Apollo } from 'angular2-apollo';
+import gql from 'graphql-tag';
+import 'rxjs/add/operator/toPromise';
+
+
 
 @IonicPage()
 @Component({
@@ -10,9 +15,27 @@ import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 export class SettingsPage {
 
   loading: any;
+  user = <any>{};
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public apollo: Angular2Apollo) {
+    this.apollo.query({
+      query: gql`
+        query {
+          user{
+            id
+            name
+            username
+          }
+        }
+      `
+    }).toPromise().then(({data}) => {
+      this.user = data;
+      this.user = this.user.user;
+    })
+
   }
+
+
 
   logoutUser() {
     //If platform is browser

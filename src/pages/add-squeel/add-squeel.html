@@ -100,18 +100,22 @@
 
   <form *ngIf="form" [formGroup]="form" padding>
     <ion-list>
-      <!-- <ion-item>
-        <ion-row class="header">
+      <ion-item>
+        <!-- <ion-row class="header">
           <ion-col col-2>
             <div class="profileUrl"> <img [src]="currentUser.profileUrl"></div>
           </ion-col>
           <ion-col col-10>
-            <p class="name">{{currentUser.name}}</p>
+            <p class="name">{{currentUser.username}}</p>
           </ion-col>
-        </ion-row>
-      </ion-item> -->
+        </ion-row> -->
+        <!-- <ion-avatar item-start>
+          <img [src]="currentUser.profileUrl">
+        </ion-avatar>
+        <h2>@{{currentUser.username}}</h2> -->
+      </ion-item>
       <ion-item>
-        <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" formControlName="description" ng-trim="false" placeholder="What are you thinking?" name="description" maxlength="140" autosize></ion-textarea>
+        <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" formControlName="description" ng-trim="false" placeholder="Let the other team know who's boss here in 140 characters or less..." name="description" maxlength="140" autosize></ion-textarea>
       </ion-item>
       <span class="charLeft" float-right>{{140 - form.value.description.length}}</span>
     </ion-list>

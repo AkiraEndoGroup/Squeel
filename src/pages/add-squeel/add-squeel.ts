@@ -62,6 +62,8 @@ export class AddSqueelPage {
        }
        user {
          id
+         profileUrl
+         username
        }
      }
      `

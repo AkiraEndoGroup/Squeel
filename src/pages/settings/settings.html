@@ -13,34 +13,34 @@
         Profile
       </ion-list-header>
       <ion-item>
-         <ion-label>Email</ion-label>
+         <ion-label>Name</ion-label>
          <ion-note item-right>
-          gugafflu@gmail.com
+          {{this.user.name}}
           </ion-note>
       </ion-item>
       <ion-item>
-         <ion-label>Gender</ion-label>
+         <ion-label>Username</ion-label>
          <ion-note item-right>
-          Male
+          {{this.user.username}}
           </ion-note>
       </ion-item>
     </ion-list>
 
     <ion-list>
       <ion-list-header>
-        Push Notifications
+        Push Notifications - Coming soon!
       </ion-list-header>
       <ion-item>
         <ion-label>Messages</ion-label>
-        <ion-toggle checked="true"></ion-toggle>
+        <ion-toggle disabled checked="true"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-label>In-App Vibrations</ion-label>
-        <ion-toggle checked="true"></ion-toggle>
+        <ion-toggle disabled checked="true"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-label>In-App Sounds</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle disabled></ion-toggle>
       </ion-item>
     </ion-list>
 
