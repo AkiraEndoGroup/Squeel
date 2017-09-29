@@ -81,7 +81,7 @@
       </div>
       <ion-item>
         <ion-grid id="topgrid">
-          <ion-row>
+          <ion-row *ngIf="squeelsTopSliced.length > 0">
             <ion-col id="topSqueeler"  col-3 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
               <img *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
               <img *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous" [src]="squeel.squeel.game.oponent1Image" style="transform: rotate(90deg)"/>
@@ -94,6 +94,11 @@
               <!-- <span padding-top   *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span> -->
             </ion-col>
           </ion-row>
+          <!-- <ion-row *ngIf="squeelsTopSliced.length == 0" text-center>
+            <ion-col>
+              <p>No Squeels yet! Post something! </p>
+            </ion-col>
+          </ion-row> -->
         </ion-grid>
       </ion-item>
         <ion-item-sliding *ngFor="let squeel of squeelsDataSliced">

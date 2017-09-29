@@ -1,0 +1,15 @@
+page-tutorial {
+  ion-content {
+    background-color: map-get($colors, primary) !important;
+    color: white !important;
+  }
+
+  ion-slide img {
+    width: 70% !important;
+  }
+  @media (min-width: 600px) {
+    ion-slide img {
+      width: 40% !important;
+    }
+  }
+}

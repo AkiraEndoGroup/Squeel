@@ -7,14 +7,8 @@ import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';
 import 'rxjs/add/operator/toPromise';
 
-import { TabsPage } from '../tabs/tabs'
+import { TutorialPage } from '../tutorial/tutorial'
 
-/**
- * Generated class for the SetUsernamePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -63,7 +57,7 @@ export class SetUsernamePage {
           username: this.form.value.username
         }
       }).toPromise().then(({data}) => {
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(TutorialPage);
       },(errors) => {
         console.log(errors);
         if (errors == "Error: GraphQL error: A unique constraint would be violated on User. Details: Field name = username") {

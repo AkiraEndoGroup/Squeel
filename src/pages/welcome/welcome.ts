@@ -41,7 +41,7 @@ export class WelcomePage {
 
     //If platform is browser
     if (this.platform.is('core') || this.platform.is('mobileweb')) {
-      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu3@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
+      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu5@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
       console.log(this.user);
       this.loading = this.loadingCtrl.create({
         content: 'Logging in...'
