@@ -41,7 +41,7 @@ export class WelcomePage {
 
     //If platform is browser
     if (this.platform.is('core') || this.platform.is('mobileweb')) {
-      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu5@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
+      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu6@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
       console.log(this.user);
       this.loading = this.loadingCtrl.create({
         content: 'Logging in...'
@@ -189,9 +189,11 @@ export class WelcomePage {
         });
       }), function(error){
         this.loading.dismiss();
+        console.log("error in show user");
         console.log(error);
       }
-    }, function(error){
+    }, function(error) {
+      console.log("error in login");
         that.loading.dismiss();
     });
   }
