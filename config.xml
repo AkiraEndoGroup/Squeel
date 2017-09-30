@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.squeelapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.squeelapp123" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Squeel</name>
     <description>A sports trash talking app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Gus</author>
+    <author email="hi@ionicframework" href="http://ionicframework.com/">Gustavo Fulton</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -86,12 +86,20 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
     <allow-navigation href="http://10.0.0.46:8100" />
+    <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="117061515679147" />
         <variable name="APP_NAME" value="Squeel" />
+    </plugin>
+    <plugin name="cordova-plugin-ionic" spec="^1.1.9">
+        <variable name="APP_ID" value="dcd2d64e" />
+        <variable name="CHANNEL_NAME" value="Production" />
+        <variable name="UPDATE_METHOD" value="background" />
+        <variable name="UPDATE_API" value="https://api.ionicjs.com" />
+        <variable name="MAX_STORE" value="2" />
     </plugin>
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.8" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />

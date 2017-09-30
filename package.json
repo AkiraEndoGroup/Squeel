@@ -30,10 +30,13 @@
         "angular2-apollo": "^0.9.0",
         "angular2-moment": "^1.7.0",
         "apollo-client": "^1.9.2",
+        "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
+        "cordova-plugin-add-swift-support": "^1.7.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-facebook4": "^1.9.1",
+        "cordova-plugin-ionic": "^1.1.9",
         "cordova-plugin-ionic-webview": "^1.1.8",
         "cordova-plugin-nativestorage": "^2.2.2",
         "cordova-plugin-splashscreen": "^4.0.3",
@@ -73,9 +76,17 @@
                 "TWITTER_SECRET": "n11WbwS7u942lEHBH2e9PNc7JiHgqrh4BrNQ5NBTCcQKUlmWwq"
             },
             "cordova-plugin-statusbar": {},
-            "cordova-plugin-ionic-webview": {}
+            "cordova-plugin-ionic-webview": {},
+            "cordova-plugin-ionic": {
+                "APP_ID": "dcd2d64e",
+                "CHANNEL_NAME": "Production",
+                "UPDATE_METHOD": "background",
+                "UPDATE_API": "https://api.ionicjs.com",
+                "MAX_STORE": "2"
+            }
         },
         "platforms": [
+            "android",
             "ios"
         ]
     }
