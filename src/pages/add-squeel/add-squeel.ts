@@ -109,6 +109,14 @@ export class AddSqueelPage {
                       profileUrl
                       username
                     }
+                    game {
+                      oponent1
+                      oponent1Image
+                      oponent1color
+                      oponent2
+                      oponent2Image
+                      oponent2color
+                    }
                   }
                 }
     `,

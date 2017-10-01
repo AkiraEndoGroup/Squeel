@@ -10,6 +10,9 @@ page-add-squeel {
     background-color: #daf5ff;
     font-size: 1.2em;
   }
+  .team1 img, .team2 img {
+    transform: rotate(90deg);
+  }
   img {
     width: 40%;
     margin: 10px;
