@@ -105,19 +105,6 @@ export class WelcomePage {
             that.loading.dismiss();
             // that.navCtrl.push(TabsPage);
             that.navCtrl.push(SetUsernamePage);
-            // this.appCtrl.getRootNav().push(TabsPage);
-            // env.nativeStorage.setItem('user',
-            // {
-            //   name: this.user.name,
-            //   email: this.user.email,
-            //   profileUrl: this.user.picture
-            // })
-            // .then(function(){
-            //   env.loading.dismiss();
-            //   env.navCtrl.push(TabsPage);
-            // }, function (error) {
-            //   console.log(error);
-            // });
           }, (errors) => {
             if (errors == "Error: GraphQL error: User already exists with that information") {
               that.signInUser().then(({data}) => {
@@ -128,27 +115,15 @@ export class WelcomePage {
                 localStorage.setItem('graphcoolToken', token.signinUser.token);
                 that.loading.dismiss();
                 that.navCtrl.push(TabsPage);
-                // env.nativeStorage.setItem('user',
-                // {
-                //   name: this.user.name,
-                //   email: this.user.email,
-                //   profileUrl: this.user.picture
-                // })
-                // .then(function(){
-                //   env.loading.dismiss();
-                //   env.navCtrl.push(TabsPage);
-                // }, function (error) {
-                //   console.log(error);
-                // });
               });
             }
           });
         }), function(error){
-          this.loading.dismiss();
+          that.loading.dismiss();
           console.log(error);
         }
       }, function(error){
-        this.loading.dismiss();
+        that.loading.dismiss();
         console.log(error);
       });
     }
