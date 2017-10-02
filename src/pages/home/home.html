@@ -82,7 +82,7 @@
       <ion-item>
         <ion-grid id="topgrid">
           <ion-row *ngIf="squeelsTopSliced.length > 0">
-            <ion-col id="topSqueeler"  col-3 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
+            <ion-col id="topSqueeler" col-4 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
               <h2 *ngIf="squeel == squeelsTopSliced[0]">$100</h2>
               <h2 *ngIf="squeel == squeelsTopSliced[1]">$25</h2>
               <h2 *ngIf="squeel == squeelsTopSliced[2]">$5</h2>
