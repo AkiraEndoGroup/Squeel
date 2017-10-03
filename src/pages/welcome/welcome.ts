@@ -40,7 +40,7 @@ export class WelcomePage {
     let env = this;
 
     //If platform is browser
-    if (this.platform.is('core') || this.platform.is('mobileweb') || this.platform.is('cordova')) {
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
       this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu6@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
       console.log(this.user);
       this.loading = this.loadingCtrl.create({
