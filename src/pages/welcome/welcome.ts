@@ -13,7 +13,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { TabsPage } from '../tabs/tabs';
 import { SetUsernamePage } from '../set-username/set-username';
 
-// @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.html',
