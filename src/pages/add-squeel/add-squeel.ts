@@ -18,6 +18,7 @@ export class AddSqueelPage {
   game: any;
   currentUser = <any>{};
   team: any = "";
+  posting: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public apollo: Angular2Apollo, public formBuilder: FormBuilder,public toastCtrl: ToastController) {
     this.game = this.navParams.get('game');
@@ -70,6 +71,9 @@ export class AddSqueelPage {
    }).toPromise();
  }
  squeel() {
+   if (this.posting) {
+     return;
+   }
    if (!this.form.value.description) {
      let toast = this.toastCtrl.create({
         message: 'There is some information missing. Try again.',
@@ -78,8 +82,7 @@ export class AddSqueelPage {
       });
       toast.present();
       return;
-   }
-   if (!this.team) {
+   } else if (!this.team) {
      let toast = this.toastCtrl.create({
         message: 'Please select your team',
         duration: 3000,
@@ -87,56 +90,58 @@ export class AddSqueelPage {
       });
       toast.present();
       return;
-   }
-   this.apollo.mutate({
-    mutation: gql`
-    mutation createSqueel($description: String!,
-                        $anonymous: Boolean,
-                        $userId: ID!,
-                        $team: Int,
-                        $gameId: ID){
-      createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous, gameId: $gameId){
-                    id
-                    description
-                    createdAt
-                    team
-                    anonymous
-                    upvotes {
+   } else {
+     this.posting = true;
+     this.apollo.mutate({
+      mutation: gql`
+      mutation createSqueel($description: String!,
+                          $anonymous: Boolean,
+                          $userId: ID!,
+                          $team: Int,
+                          $gameId: ID){
+        createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous, gameId: $gameId){
                       id
-                    }
-                    user {
-                      id
-                      profileUrl
-                      username
-                    }
-                    game {
-                      oponent1
-                      oponent1Image
-                      oponent1color
-                      oponent2
-                      oponent2Image
-                      oponent2color
+                      description
+                      createdAt
+                      team
+                      anonymous
+                      upvotes {
+                        id
+                      }
+                      user {
+                        id
+                        profileUrl
+                        username
+                      }
+                      game {
+                        oponent1
+                        oponent1Image
+                        oponent1color
+                        oponent2
+                        oponent2Image
+                        oponent2color
+                      }
                     }
                   }
-                }
-    `,
-    variables: {
-      description: this.form.value.description,
-      userId: this.currentUser.id,
-      team: (this.team == "team1") ? 1 : 2,
-      anonymous: this.form.value.anonymous,
-      gameId: this.game.id
-    }
-  }).toPromise().then(({data}) => {
-    this.form.value.description = "";
-    let toast = this.toastCtrl.create({
-       message: 'Squeel created successfully!',
-       duration: 3000,
-       position: 'top'
-     });
-     toast.present();
-     this.viewCtrl.dismiss(data);
-  });
+      `,
+      variables: {
+        description: this.form.value.description,
+        userId: this.currentUser.id,
+        team: (this.team == "team1") ? 1 : 2,
+        anonymous: this.form.value.anonymous,
+        gameId: this.game.id
+      }
+    }).toPromise().then(({data}) => {
+      this.form.value.description = "";
+      let toast = this.toastCtrl.create({
+         message: 'Squeel created successfully!',
+         duration: 3000,
+         position: 'top'
+       });
+       toast.present();
+       this.viewCtrl.dismiss(data);
+    });
+   }
  }
 
 }
