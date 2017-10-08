@@ -12,6 +12,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 import { TabsPage } from '../tabs/tabs';
 import { SetUsernamePage } from '../set-username/set-username';
+import { CreateAccountPage } from '../create-account/create-account';
 
 @IonicPage()
 @Component({
@@ -229,6 +230,10 @@ export class WelcomePage {
       }
     }).toPromise();
 
+  }
+
+  createAccount(){
+    this.navCtrl.push(CreateAccountPage);
   }
 
 }

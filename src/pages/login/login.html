@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="logo" padding-horizontal text-center>
+    <img src="assets/squeelcopy.png" width="80%"/>
+    <!-- <p> Welcome back! </p> -->
+  </div>
+
+  <ion-list padding-top>
+    <ion-item>
+      <ion-icon class="licon" name="mail" item-left></ion-icon>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon class="licon" name="lock" item-left></ion-icon>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="signUpBtn">
+    <button ion-button block round outline (tap)='login()'>Login</button>
+  </div>
+
+</ion-content>

@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -15,6 +13,8 @@ import { GameSqueelsPage } from '../pages/game-squeels/game-squeels';
 import { SqueelpopoverPage } from '../pages/squeelpopover/squeelpopover';
 import { SetUsernamePage } from '../pages/set-username/set-username';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { CreateAccountPage } from '../pages/create-account/create-account';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,13 +33,12 @@ import { ApolloModule } from 'angular2-apollo';
 import { Facebook } from '@ionic-native/facebook';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
     MyApp,
     Autosize,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     WelcomePage,
@@ -49,7 +48,9 @@ import { NativeStorage } from '@ionic-native/native-storage';
     GameSqueelsPage,
     SqueelpopoverPage,
     SetUsernamePage,
-    TutorialPage
+    TutorialPage,
+    CreateAccountPage,
+    LoginPage
   ],
   imports: [
     ApolloModule.withClient(provideClient),
@@ -60,8 +61,6 @@ import { NativeStorage } from '@ionic-native/native-storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     WelcomePage,
@@ -71,7 +70,9 @@ import { NativeStorage } from '@ionic-native/native-storage';
     GameSqueelsPage,
     SqueelpopoverPage,
     SetUsernamePage,
-    TutorialPage
+    TutorialPage,
+    CreateAccountPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -79,7 +80,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
     TwitterConnect,
-    NativeStorage
+    NativeStorage,
+    Camera
   ]
 })
 export class AppModule {}

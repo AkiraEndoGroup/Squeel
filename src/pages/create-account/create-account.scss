@@ -1,0 +1,42 @@
+page-create-account {
+
+  .signUpBtn{
+    padding: 3%;
+  }
+
+  .licon {
+    color: dimgrey;
+  }
+
+  ion-label{
+    color: grey;
+  }
+
+  ion-input{
+    color: grey;
+  }
+
+  .profileHeader {
+    margin: 5%;
+  }
+  .parent {
+    position: relative;
+    width: 200px;
+    margin: auto;
+  }
+  .pop-in {
+    position: absolute;
+    top: 75%;
+    right: 5%;
+  }
+  .avatar {
+    border-radius: 50%;
+    width: 200px;
+    margin: auto;
+  }
+
+  .login {
+    color: map-get($colors, "primary");
+  }
+
+}

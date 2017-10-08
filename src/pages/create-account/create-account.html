@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      Sign Up
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="profileHeader">
+    <ion-avatar (click)="changePic()">
+      <div class="parent">
+        <img class="avatar" [src]="imageUri">
+        <ion-fab right class="pop-in" [ngClass]="{'pop-out': fabGone}">
+          <button ion-fab mini color="dark"><ion-icon name="camera"></ion-icon></button>
+        </ion-fab>
+      </div>
+    </ion-avatar>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon class="licon" name="person" item-left></ion-icon>
+      <ion-label stacked>First Name</ion-label>
+      <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon class="licon" name="people" item-left></ion-icon>
+      <ion-label stacked>Last Name</ion-label>
+      <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon class="licon" name="mail" item-left></ion-icon>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon class="licon" name="lock" item-left></ion-icon>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <div text-center>
+    <div class="signUpBtn">
+      <button ion-button block round outline (tap)='createAccount()'>Create Account</button>
+    </div>
+
+    <p text-wrap> Already have an account? <span class="login" color="primary" (tap)="gotoLogin()"> Sign in </span> instead. </p>
+  </div>
+</ion-content>
