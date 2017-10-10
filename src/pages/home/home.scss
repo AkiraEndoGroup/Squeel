@@ -46,9 +46,9 @@ page-home {
 
   .gameHeader {
     height: 130px;
-    padding-top: 15px;
+    padding-top: 20px;
     background-color: #daf5ff;
-    font-size: 1.2em;
+    font-size: 1em;
     // margin-bottom: 15px;
   }
   .circle1:before {
@@ -178,6 +178,18 @@ page-home {
       .featuredName {
         font-size: 0.5em;
       }
+  }
+
+  @media (min-width: 400px) {
+
+    .gameHeader {
+      height: 130px;
+      padding-top: 20px;
+      background-color: #daf5ff;
+      font-size: 1.2em;
+      // margin-bottom: 15px;
+    }
+
   }
 
   @media (min-width: 768px) {
