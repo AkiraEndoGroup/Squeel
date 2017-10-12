@@ -16,41 +16,6 @@
   <ion-fab bottom right (tap)="createSqueel()">
     <button ion-fab><ion-icon name="create"></ion-icon></button>
   </ion-fab>
-  <!-- <div text-center>
-    <ion-list-header>
-      Games this week!
-    </ion-list-header>
-  </div> -->
-  <!-- <div class="gameHeader" *ngFor="let game of games">
-    <ion-grid>
-      <ion-row text-center>
-        <ion-col class="gameDate">
-          {{game.date | date: 'EEEE, MMMM d - h:mm a'}}
-        </ion-col>
-      </ion-row>
-      <ion-row text-center>
-        <ion-col col-3 id="oponent1">
-          <span class="circle1" [style.color]="game.oponent1color"></span>
-          <br>
-          <span>{{game.oponent1}}</span>
-        </ion-col>
-        <ion-col col-6 id="stats" text-center>
-          <span class="score">0 - 0</span><br>
-          <span>{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
-        </ion-col>
-        <ion-col col-3 id="oponent2">
-          <span class="circle2" [style.color]="game.oponent2color"></span>
-          <br>
-          <span>{{game.oponent2}}</span>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div> -->
-  <!-- <div text-center>
-    <ion-list-header>
-      Games this week!
-    </ion-list-header>
-  </div> -->
   <div class="gameHeader" *ngFor="let game of games">
     <ion-grid>
       <ion-row text-center padding-top>
@@ -62,7 +27,7 @@
         </ion-col>
         <ion-col col-6 id="stats" text-center>
           <span class="score">{{game.oponent1Score}} - {{game.oponent2Score}}</span><br>
-          <span>{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
+          <span class="trophiesScore">{{team1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{team2Trophies}}</span>
         </ion-col>
         <ion-col col-3 id="oponent2">
           <!-- <img src="assets/um.png"> -->
@@ -76,61 +41,73 @@
   </div>
   <div id="squeels" *ngIf="squeelsData">
     <ion-list class="top">
-      <div text-center class="topSqueels">
-          Top 3
+      <div>
+        <ion-segment [(ngModel)]="filter">
+          <ion-segment-button value="Latest">
+            Latest
+          </ion-segment-button>
+          <ion-segment-button value="TopRated">
+            Top Rated
+          </ion-segment-button>
+        </ion-segment>
       </div>
-      <ion-item>
-        <ion-grid id="topgrid">
-          <ion-row *ngIf="squeelsTopSliced.length > 0">
-            <ion-col id="topSqueeler" col-4 *ngFor="let squeel of squeelsTopSliced" text-center (tap)="openPopOver(squeel)">
-              <h2 *ngIf="squeel == squeelsTopSliced[0]">$100</h2>
-              <h2 *ngIf="squeel == squeelsTopSliced[1]">$25</h2>
-              <h2 *ngIf="squeel == squeelsTopSliced[2]">$5</h2>
-              <img *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
-              <img *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous" [src]="squeel.squeel.game.oponent1Image" style="transform: rotate(90deg)"/>
-              <img *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous" [src]="squeel.squeel.game.oponent2Image" style="transform: rotate(90deg)" />
-              <!-- <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> -->
-              <h2 padding-top>{{squeel.length}}</h2>
-              <span padding-top class="featuredName" *ngIf="!squeel.squeel.anonymous" text-center>@{{squeel.squeel.user.username}}</span>
-              <span padding-top class="featuredName" *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous" text-center>@{{squeel.squeel.game.oponent1}}</span>
-              <span padding-top class="featuredName" *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous" text-center>@{{squeel.squeel.game.oponent2}}</span>
-              <!-- <span padding-top   *ngIf="squeel.squeel.team == 2" class="featuredName">@{{squeel.squeel.user.username}}</span> -->
-            </ion-col>
-          </ion-row>
-          <!-- <ion-row *ngIf="squeelsTopSliced.length == 0" text-center>
-            <ion-col>
-              <p>No Squeels yet! Post something! </p>
-            </ion-col>
-          </ion-row> -->
-        </ion-grid>
-      </ion-item>
-        <ion-item-sliding *ngFor="let squeel of squeelsDataSliced">
-          <ion-item>
-            <p class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-            <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
-            <span class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{squeel.squeel.game.oponent1}}</span>
-            <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{squeel.squeel.game.oponent2}}</span>
-            <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-            <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
-            <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
-              <span>{{squeel.length}}</span>
-              <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
-            </ion-note>
-            <ion-note item-end class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
-              <span>{{squeel.length}}</span>
-              <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
-            </ion-note>
-          </ion-item>
-          <ion-item-options side="right">
-            <button ion-button color="danger" (tap)="report(squeel)">
-              <ion-icon name="flag"></ion-icon>
-              Report
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
-        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-          <ion-infinite-scroll-content></ion-infinite-scroll-content>
-        </ion-infinite-scroll>
-      </ion-list>
+      <div [ngSwitch]="filter">
+        <div *ngSwitchCase="'Latest'">
+          <ion-item-sliding *ngFor="let squeel of squeelsDataSliced">
+            <ion-item>
+              <p class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+              <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
+              <span class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{squeel.squeel.game.oponent1}}</span>
+              <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{squeel.squeel.game.oponent2}}</span>
+              <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+              <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
+              <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+                <span>{{squeel.length}}</span>
+                <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+              </ion-note>
+              <ion-note item-end class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+                <span>{{squeel.length}}</span>
+                <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+              </ion-note>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="danger" (tap)="report(squeel)">
+                <ion-icon name="flag"></ion-icon>
+                Report
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+          <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+      </div>
+      <div *ngSwitchCase="'TopRated'">
+          <ion-item-sliding *ngFor="let squeel of squeelsTop">
+            <ion-item>
+              <p class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+              <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
+              <span class="date name" [style.color]="oponent1Color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{squeel.squeel.game.oponent1}}</span>
+              <span class="date name" [style.color]="oponent2Color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{squeel.squeel.game.oponent2}}</span>
+              <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+              <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
+              <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+                <span>{{squeel.length}}</span>
+                <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+              </ion-note>
+              <ion-note item-end class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+                <span>{{squeel.length}}</span>
+                <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+              </ion-note>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="danger" (tap)="report(squeel)">
+                <ion-icon name="flag"></ion-icon>
+                Report
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </div>
+      </div>
+    </ion-list>
   </div>
 </ion-content>

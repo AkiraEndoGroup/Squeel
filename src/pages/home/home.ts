@@ -30,7 +30,7 @@ export class HomePage {
   oponent1Color: any;
   oponent2Color: any;
 
-  filter: any = "latest";
+  filter: any = "Latest";
 
   constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public apollo: Angular2Apollo,public alertCtrl: AlertController, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
     this.squeelsLoaded = 10;
@@ -113,8 +113,7 @@ export class HomePage {
       }
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
-      this.squeelsTopSliced = this.squeelsTop.slice(0,3);
-      console.log(this.squeelsTopSliced);
+      this.squeelsTop = this.squeelsTop.slice(0, 30);
       this.loading.dismiss();
     });
   }
@@ -150,7 +149,7 @@ export class HomePage {
       }
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
-      this.squeelsTopSliced = this.squeelsTop.slice(0,3);
+      this.squeelsTop = this.squeelsTop.slice(0, 30);
     })
   }
 

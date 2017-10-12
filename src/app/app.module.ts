@@ -19,8 +19,8 @@ import { LoginPage } from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+//Modules
 import { Autosize } from '../components/autosize';
-
 import { MomentModule } from 'angular2-moment';
 
 

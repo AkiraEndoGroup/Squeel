@@ -35,12 +35,6 @@ page-home {
   }
   .circle img {
     transform: scale(2) rotate(90deg) !important;
-    // display: block;
-    // border-radius: 50%;
-    // height: 10px;
-    // width: 10px;
-    // margin: 0 auto 0;
-    // margin-bottom: 10px;
     padding-right: 3px;
   }
 
@@ -85,6 +79,9 @@ page-home {
     }
     color: grey;
   }
+  .trophiesScore {
+    font-size: 1.2em;
+  }
   .trophies {
     margin: auto;
 
@@ -118,40 +115,9 @@ page-home {
     // font-family: 'CenturyGothicBold';
     font-style: italic;
   }
-  .top {
-    color: #FFBE30;
-  }
   .topSqueels {
     font-weight: bold;
     padding-top: 9px;
-  }
-  #topgrid {
-    column-rule: 4px outset #ff00ff;
-  }
-  #topSqueeler img {
-    display: block;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    margin: 0 auto 0;
-  }
-  #topSqueeler:first-child {
-    // padding-top: 20px;
-
-    color: #FFC324 !important;
-    // font-size: 3em;
-  }
-  #topSqueeler:nth-child(2) {
-    color: #A0A7AD !important;
-    // font-size: 4em;
-  }
-  #topSqueeler:nth-child(3) {
-    // padding-top: 40px;
-    color: #BB7760;
-    // font-size: 2em;
-  }
-  #topSqueeler p {
-    font-size: 1.2em;
   }
   .description img {
     // display: block;
@@ -168,9 +134,6 @@ page-home {
   @media (max-width: 321px) {
       ion-content {
           font-size: 0.7em;
-      }
-      .description {
-        // padding-left: 15px;
       }
       .gameHeader {
         height: 100px !important;
@@ -192,15 +155,11 @@ page-home {
       ion-content {
           font-size: 1.2em;
       }
-      .description {
-        // padding-left: 15px;
-      }
       #oponent1 img, #oponent2 img {
         width: 30%;
         transform: scale(1.2) rotate(90deg) !important;
       }
       .circle img {
-        // transform: scale(1.5) rotate(90deg) !important;
         padding-right: 3px;
       }
       .gameHeader {
@@ -211,15 +170,11 @@ page-home {
       ion-content {
           font-size: 1.5em;
       }
-      .description {
-        // padding-left: 15px;
-      }
       #oponent1 img, #oponent2 img {
         width: 30%;
         transform: scale(1.2) rotate(90deg) !important;
       }
       .circle img {
-        // transform: scale(1.5) rotate(90deg) !important;
         padding-right: 3px;
       }
       .gameHeader {
