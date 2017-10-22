@@ -1,0 +1,86 @@
+<!--
+  Generated template for the AllGamesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Games</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="gamesTag">
+      <ion-segment-button value="current">
+        Current
+      </ion-segment-button>
+      <ion-segment-button value="past">
+        Past
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+<div [ngSwitch]="gamesTag">
+  <ion-list *ngSwitchCase="'current'">
+    <div class="gameHeader" *ngFor="let game of games" (click)="openHome(game)">
+      <ion-grid>
+        <ion-row text-center padding-top>
+          <ion-col class="gameDate" col-12>
+            {{game.date | date: 'EEEE, MMMM d, y'}}
+          </ion-col>
+          <ion-col col-3 id="oponent1">
+            <img [src]="game.oponent1Image">
+            <br>
+            <br>
+            <span padding-top>{{game.oponent1}}</span>
+          </ion-col>
+          <ion-col col-6 id="stats" text-center>
+            <span class="score">{{game.oponent1Score}} - {{game.oponent2Score}}</span><br>
+            <span class="trophiesScore">{{game.oponent1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{game.oponent2Trophies}}</span>
+          </ion-col>
+          <ion-col col-3 id="oponent2">
+            <img [src]="game.oponent2Image">
+            <br>
+            <br>
+            <span padding-top>{{game.oponent2}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'past'">
+    <div class="gameHeader" *ngFor="let game of pastGames" (click)="openHome(game)">
+      <ion-grid>
+        <ion-row text-center padding-top>
+          <ion-col class="gameDate" col-12>
+            {{game.date | date: 'EEEE, MMMM d, y'}}
+          </ion-col>
+          <ion-col col-3 id="oponent1">
+            <img [src]="game.oponent1Image">
+            <br>
+            <br>
+            <span padding-top>{{game.oponent1}}</span>
+          </ion-col>
+          <ion-col col-6 id="stats" text-center>
+            <span class="score">{{game.oponent1Score}} - {{game.oponent2Score}}</span><br>
+            <span class="trophiesScore">{{game.oponent1Trophies}} <ion-icon ios="ios-trophy-outline" md="md-trophy"> </ion-icon> {{game.oponent2Trophies}}</span>
+          </ion-col>
+          <ion-col col-3 id="oponent2">
+            <img [src]="game.oponent2Image">
+            <br>
+            <br>
+            <span padding-top>{{game.oponent2}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-list>
+</div>
+
+</ion-content>

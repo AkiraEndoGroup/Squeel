@@ -1,0 +1,105 @@
+page-all-games {
+  super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons {
+    margin-top: 4%;
+  }
+  ion-segment {
+    margin-bottom: 5px;
+  }
+  ion-fab {
+    position: absolute !important;
+    right: 5% !important;
+    bottom: 5% !important;
+  }
+  .fab {
+    box-shadow: 2px 2px 10px #888888;
+  }
+  #oponent1 img, #oponent2 img {
+    width: 20%;
+    transform: scale(2) rotate(90deg) !important;
+  }
+  .gameHeader {
+    height: 130px;
+    background-color: #daf5ff;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+  .gameDate {
+    font-size: 0.8em;
+    color: grey;
+  }
+  ion-col {
+    margin: auto !important;
+  }
+  #stats {
+    .score {
+      font-size: 2em;
+    }
+    ion-icon {
+      font-size: 1.4em;
+      color: #D5BA4B;
+    }
+    color: grey;
+  }
+  .trophiesScore {
+    font-size: 1.2em;
+  }
+  @media (max-width: 400px) and (min-width: 322px) {
+      .featuredName {
+        font-size: 0.7em;
+      }
+  }
+  @media (max-width: 321px) {
+      ion-content {
+          font-size: 0.7em;
+      }
+      .gameHeader {
+        height: 100px !important;
+      }
+      .featuredName {
+        font-size: 0.5em;
+      }
+  }
+
+  @media (min-width: 400px) {
+
+    .gameHeader {
+      font-size: 1.2em;
+    }
+
+  }
+
+  @media (min-width: 768px) {
+      ion-content {
+          font-size: 1.2em;
+      }
+      #oponent1 img, #oponent2 img {
+        width: 30%;
+        transform: scale(1.2) rotate(90deg) !important;
+      }
+      .circle img {
+        padding-right: 3px;
+      }
+      .gameHeader {
+        height: 180px !important;
+      }
+  }
+  @media (min-width: 1024px) {
+      ion-content {
+          font-size: 1.5em;
+      }
+      #oponent1 img, #oponent2 img {
+        width: 30%;
+        transform: scale(1.2) rotate(90deg) !important;
+      }
+      .circle img {
+        padding-right: 3px;
+      }
+      .gameHeader {
+        height: 210px !important;
+      }
+      .featuredName {
+        font-size: 1.2em;
+      }
+  }
+
+}

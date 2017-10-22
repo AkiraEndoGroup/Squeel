@@ -25,9 +25,7 @@ export class AddSqueelPage {
 
     this.currentUserInfo().then(({data}) => {
       this.currentUser = data;
-      this.game = this.currentUser.allGames[0];
       this.currentUser = this.currentUser.user;
-      console.log(this.game);
     });
     this.form = formBuilder.group({
      description: ['', Validators.required],
@@ -50,17 +48,6 @@ export class AddSqueelPage {
    return this.apollo.query({
      query: gql`
      query {
-       allGames(filter:{active: true}) {
-         id
-         oponent1
-         oponent1color
-         oponent1Score
-         oponent1Image
-         oponent2
-         oponent2color
-         oponent2Score
-         oponent2Image
-       }
        user {
          id
          profileUrl
