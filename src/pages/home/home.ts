@@ -35,6 +35,7 @@ export class HomePage {
   team2: any = 0;
   team1Trophies: any = 0;
   team2Trophies: any = 0;
+  now: any = new Date();
 
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public apollo: Angular2Apollo,public alertCtrl: AlertController, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
@@ -42,8 +43,10 @@ export class HomePage {
     this.loadedGame = navParams.get('game');
     this.team1Trophies = this.loadedGame.oponent1Trophies;
     this.team2Trophies = this.loadedGame.oponent2Trophies;
-    let now = new Date().toISOString();
-    if (this.loadedGame.date < now) {
+    let newDate: any;
+    newDate = this.now.setDate(this.now.getDate()-1);
+    this.now = new Date(newDate).toISOString();
+    if (this.loadedGame.date < this.now) {
       this.isPastGame = true;
     }
     this.loading = this.loadingCtrl.create({
@@ -114,56 +117,10 @@ export class HomePage {
       }
       `, variables: {
         id: this.loadedGame.id
-      }
+      },
+      fetchPolicy: "network-only"
     });
   }
-
-  getSqueels() {
-    return this.apollo.watchQuery({
-      query: gql`
-      query {
-        allGames(orderBy: date_ASC, filter:{active: true}) {
-          oponent1
-          oponent1color
-          oponent1Score
-          oponent1Image
-          oponent2
-          oponent2color
-          oponent2Score
-          oponent2Image
-          date
-          squeels(orderBy: createdAt_DESC) {
-            id
-            description
-            createdAt
-            team
-            anonymous
-            upvotes {
-              id
-            }
-            user {
-              id
-              profileUrl
-              username
-            }
-            game {
-              oponent1
-              oponent1Image
-              oponent1color
-              oponent2
-              oponent2Image
-              oponent2color
-            }
-          }
-        }
-        user {
-          id
-        }
-      }
-      `
-    })
-  }
-
 
   doRefresh(refresher) {
     this.refresh(refresher);
@@ -174,13 +131,23 @@ export class HomePage {
   }
 
   refresh(refresher) {
-    this.getSqueels().refetch(({data})=> {
-      this.games = data;
-      this.userId = this.games.user.id;
-      this.games = this.games.allGames;
+    this.getLoadedGameSqueels().subscribe(({data})=> {
+      this.loadedGameSqueels = data;
+
+      //Getting each team's trophies
+      let trophies = <any>{};
+      trophies = this.loadedGameSqueels.allGames[0];
+      this.team1 = trophies.oponent1Trophies;
+      this.team2 = trophies.oponent2Trophies;
+
+      this.userId = this.loadedGameSqueels.user.id;
+
+      this.loadedGameSqueels = this.loadedGameSqueels.allSqueels;
+
       this.squeelsData = [];
       this.squeelsTop = [];
-      for(let squeel of this.games[0].squeels) {
+
+      for(let squeel of this.loadedGameSqueels) {
         let voted = false;
         for(let voters of squeel.upvotes) {
           if (voters.id == this.userId) {
@@ -194,6 +161,7 @@ export class HomePage {
       this.squeelsTop.sort(this.compare);
       this.squeelsDataSliced = this.squeelsData.slice(0, 10);
       this.squeelsTop = this.squeelsTop.slice(0, 30);
+      this.loading.dismiss();
     })
   }
 
