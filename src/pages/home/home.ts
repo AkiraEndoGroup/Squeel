@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController,NavParams, ModalController, PopoverController, AlertController, LoadingController } from 'ionic-angular';
 
 import { AddSqueelPage } from '../add-squeel/add-squeel';
-import { GameSqueelsPage } from '../game-squeels/game-squeels';
 import { SqueelpopoverPage } from '../squeelpopover/squeelpopover';
 
 import { Angular2Apollo } from 'angular2-apollo';
@@ -342,10 +341,6 @@ export class HomePage {
     if (a.length < b.length)
       return 1;
     return 0;
-  }
-
-  gotoGame(game) {
-    this.navCtrl.push(GameSqueelsPage, {game: game});
   }
   openPopOver(squeel) {
     let popover = this.popoverCtrl.create(SqueelpopoverPage, {squeel: squeel}, { cssClass: 'custom-popover'});

@@ -14,7 +14,6 @@
 
 </ion-header>
 
-
 <ion-content>
   <div class="gameHeader" *ngIf="this.game">
     <ion-grid>
@@ -26,15 +25,12 @@
           <span padding-top>{{game.oponent1}}</span>
         </ion-col>
         <ion-col col-3 id="oponent1" class="noteam" *ngIf="!team || team == 'team2'" (tap)="selectTeam1()">
-          <!-- <span class="circle1"></span> -->
           <br>
           <span>{{game.oponent1}}</span>
         </ion-col>
         <ion-col col-6 id="stats">
           <span class="score">please choose your team</span>
           <br>
-          <!-- <span>3125 <ion-icon ios="ios-trophy-outline" md="md-trophy-outline"> </ion-icon> 3000</span> -->
-          <!-- <br> -->
         </ion-col>
         <ion-col col-3 id="oponent1" class="team2" *ngIf="team == 'team2'">
           <!-- <span class="circle1"></span> -->
@@ -51,42 +47,8 @@
     </ion-grid>
   </div>
 
-  <!-- <div class="chooseTeam">
-    <ion-row>
-      <ion-col col-3 text-right class="team1" *ngIf="team == 'team1'">
-
-      </ion-col>
-      <ion-col col-3 text-right class="noteam" *ngIf="!team || team == 'team2'" (tap)="selectTeam1()">
-
-      </ion-col>
-      <ion-col col-6 text-center>
-        please choose your team
-      </ion-col>
-      <ion-col col-3 text-left class="team2" *ngIf="team == 'team2'">
-
-      </ion-col>
-      <ion-col col-3 text-left class="noteam" *ngIf="!team || team == 'team1'" (tap)="selectTeam2()">
-
-      </ion-col>
-    </ion-row>
-  </div> -->
-
   <form *ngIf="form" [formGroup]="form" padding>
     <ion-list>
-      <!-- <ion-item> -->
-        <!-- <ion-row class="header">
-          <ion-col col-2>
-            <div class="profileUrl"> <img [src]="currentUser.profileUrl"></div>
-          </ion-col>
-          <ion-col col-10>
-            <p class="name">{{currentUser.username}}</p>
-          </ion-col>
-        </ion-row> -->
-        <!-- <ion-avatar item-start>
-          <img [src]="currentUser.profileUrl">
-        </ion-avatar>
-        <h2>@{{currentUser.username}}</h2> -->
-      <!-- </ion-item> -->
       <ion-item>
         <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" formControlName="description" ng-trim="false" placeholder="Let the other team know who's boss here in 140 characters or less..." name="description" maxlength="140" autosize></ion-textarea>
       </ion-item>

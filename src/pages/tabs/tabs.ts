@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { ProfilePage } from '../profile/profile';
-import { HomePage } from '../home/home';
 import { AllGamesPage } from '../all-games/all-games';
 
 @Component({

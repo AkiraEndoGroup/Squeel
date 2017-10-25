@@ -9,7 +9,6 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { ProfilePage } from '../pages/profile/profile';
 import { AddSqueelPage } from '../pages/add-squeel/add-squeel';
 import { SettingsPage } from '../pages/settings/settings';
-import { GameSqueelsPage } from '../pages/game-squeels/game-squeels';
 import { SqueelpopoverPage } from '../pages/squeelpopover/squeelpopover';
 import { SetUsernamePage } from '../pages/set-username/set-username';
 import { TutorialPage } from '../pages/tutorial/tutorial';
@@ -46,7 +45,6 @@ import { Camera } from '@ionic-native/camera';
     ProfilePage,
     AddSqueelPage,
     SettingsPage,
-    GameSqueelsPage,
     SqueelpopoverPage,
     SetUsernamePage,
     TutorialPage,
@@ -69,7 +67,6 @@ import { Camera } from '@ionic-native/camera';
     ProfilePage,
     AddSqueelPage,
     SettingsPage,
-    GameSqueelsPage,
     SqueelpopoverPage,
     SetUsernamePage,
     TutorialPage,
