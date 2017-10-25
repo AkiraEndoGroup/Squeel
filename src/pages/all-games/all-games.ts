@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, AlertController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 
@@ -12,21 +12,30 @@ import 'rxjs/add/operator/toPromise';
   selector: 'page-all-games',
   templateUrl: 'all-games.html',
 })
-export class AllGamesPage {
+export class AllGamesPage implements OnInit {
 
   gamesTag: any = "current";
   games = <any>[];
   pastGames = <any>[];
-  now = new Date().toISOString();
+  now: any = new Date();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Angular2Apollo) {
+
+
+
+
+  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController) {
+  }
+
+  ngOnInit() {
+    let newDate: any;
+    newDate = this.now.setDate(this.now.getDate()-1);
+    this.now = new Date(newDate).toISOString();
+    console.log(this.now);
     this.getCurrentGames().subscribe(({data}) => {
-      console.log(data);
       this.games = data;
       this.games = this.games.allGames;
     });
     this.getPastGames().subscribe(({data}) => {
-      console.log(data);
       this.pastGames = data;
       this.pastGames = this.pastGames.allGames;
     });
@@ -56,8 +65,8 @@ export class AllGamesPage {
       }
       `, variables: {
         date: this.now
-      }
-    })
+      },
+    });
   }
   getPastGames() {
     return this.apollo.watchQuery({
@@ -89,6 +98,15 @@ export class AllGamesPage {
 
   openHome(game) {
     this.navCtrl.push(HomePage, {game: game});
+  }
+
+  tellMore() {
+    let alert = this.alertCtrl.create({
+      title: 'Stay tuned! ',
+      subTitle: 'More games and sports are coming soon!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

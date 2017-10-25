@@ -376,13 +376,4 @@ export class HomePage {
     });
     alert.present();
   }
-
-  tellMore() {
-    let alert = this.alertCtrl.create({
-      title: 'Stay tuned! ',
-      subTitle: 'More games and sports are coming soon!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 }
