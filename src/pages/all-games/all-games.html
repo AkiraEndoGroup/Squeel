@@ -13,6 +13,9 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div>
     <ion-segment [(ngModel)]="gamesTag">
       <ion-segment-button value="current">
@@ -26,9 +29,6 @@
 
 <div [ngSwitch]="gamesTag">
   <ion-list *ngSwitchCase="'current'">
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
     <div class="gameHeader" *ngFor="let game of games" (click)="openHome(game)">
       <ion-grid>
         <ion-row text-center padding-top>

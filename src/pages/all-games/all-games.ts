@@ -40,6 +40,13 @@ export class AllGamesPage implements OnInit {
       this.pastGames = this.pastGames.allGames;
     });
   }
+  
+  ionViewDidEnter() {
+    this.getCurrentGames().subscribe(({data}) => {
+      this.games = data;
+      this.games = this.games.allGames;
+    });
+  }
 
   getCurrentGames() {
     return this.apollo.watchQuery({
