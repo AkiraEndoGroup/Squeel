@@ -66,6 +66,7 @@ export class AllGamesPage implements OnInit {
       `, variables: {
         date: this.now
       },
+      fetchPolicy: "network-only"
     });
   }
   getPastGames() {
@@ -107,6 +108,17 @@ export class AllGamesPage implements OnInit {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  doRefresh(refresher) {
+    this.getCurrentGames().subscribe(({data}) => {
+      this.games = data;
+      this.games = this.games.allGames;
+    });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1500);
   }
 
 }
