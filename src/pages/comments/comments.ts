@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TimeAgoPipe } from 'angular2-moment';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';

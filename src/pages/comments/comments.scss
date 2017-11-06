@@ -1,4 +1,7 @@
 page-comments {
+  ion-footer {
+    border-top: 2px solid map-get($colors, primary) !important;
+  }
   super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons {
     margin-top: 4%;
   }
@@ -20,9 +23,6 @@ page-comments {
   }
   ion-col {
     margin: auto !important;
-  }
-  .trophiesScore {
-    font-size: 1.2em;
   }
   .trophies {
     margin: auto;
@@ -52,17 +52,9 @@ page-comments {
   }
   .name {
     font-weight: bold;
-  }
-  .gameDate {
-    // font-family: 'CenturyGothicBold';
-    font-style: italic;
-  }
-  .topSqueels {
-    font-weight: bold;
-    padding-top: 9px;
+    color: map-get($colors, primary);
   }
   .description img {
-    // display: block;
     border-radius: 50%;
     height: 25px;
     width: 25px;
@@ -108,6 +100,26 @@ page-comments {
       .featuredName {
         font-size: 1.2em;
       }
+  }
+
+  ion-footer {
+    background-color: #fff !important;
+    // height: 255px;
+    height:auto !important;
+  }
+  ion-toolbar {
+    //box-shadow: 0 0 4px rgba(0, 0, 0, 0.11);
+    background-color: #fff !important;
+    padding: 0 !important;
+    height:auto !important;
+  }
+  ion-textarea {
+    width: 100%;
+    background-color: #fff;
+    border: 0;
+    border-radius: 20px;
+    resize: none;
+    font-size: 0.9em;
   }
 
 }

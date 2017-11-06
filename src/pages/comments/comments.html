@@ -40,11 +40,11 @@
 
 </ion-content>
 
-
 <ion-footer no-border>
  <ion-toolbar no-border>
     <ion-item class="input-wrap" padding-left no-border>
-        <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" [(ngModel)]="comment" ng-trim="false" placeholder="Comment" name="description" maxlength="140" autosize></ion-textarea>
+      <!-- <ion-input placeholder="Text Input" [(ngModel)]="comment"></ion-input> -->
+        <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" [(ngModel)]="comment" ng-trim="false" placeholder="Comment here - 140 characters max" name="description" maxlength="140" autosize></ion-textarea>
         <button ion-button clear icon-only item-right (click)="sendMessage()">
             <ion-icon color='primary' name="send"></ion-icon>
         </button>
