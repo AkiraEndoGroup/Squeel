@@ -3,6 +3,7 @@ import { NavController,NavParams, ModalController, PopoverController, AlertContr
 
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 import { SqueelpopoverPage } from '../squeelpopover/squeelpopover';
+import { CommentsPage } from '../comments/comments';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';
@@ -104,6 +105,15 @@ export class HomePage {
             id
             profileUrl
             username
+          }
+          comments {
+            id
+            comment
+            createdAt
+            user{
+              id
+              username
+            }
           }
         }
         allGames(filter: {id: $id}) {
@@ -338,5 +348,10 @@ export class HomePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+
+  gotoComment(squeel) {
+    this.navCtrl.push(CommentsPage, {squeel: squeel, loadedGame: this.loadedGame, user: this.userId});
   }
 }

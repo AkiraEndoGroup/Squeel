@@ -1,0 +1,53 @@
+<!--
+  Generated template for the CommentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Comments</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item class="comment">
+      <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+      <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
+      <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
+      <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{loadedGame.oponent2}}</span>
+      <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+      <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
+      <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+        <span>{{squeel.length}}</span>
+        <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+      </ion-note>
+      <ion-note item-end class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+        <span>{{squeel.length}}</span>
+        <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+      </ion-note>
+    </ion-item>
+    <ion-item *ngFor="let comment of comments">
+      <p class="date name">@{{comment.user.username}}</p>
+      <p text-wrap class="description"> {{comment.comment}}</p>
+      <span class="date">{{comment.createdAt | amTimeAgo}}</span>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+
+<ion-footer no-border>
+ <ion-toolbar no-border>
+    <ion-item class="input-wrap" padding-left no-border>
+        <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" [(ngModel)]="comment" ng-trim="false" placeholder="Comment" name="description" maxlength="140" autosize></ion-textarea>
+        <button ion-button clear icon-only item-right (click)="sendMessage()">
+            <ion-icon color='primary' name="send"></ion-icon>
+        </button>
+    </ion-item>
+ </ion-toolbar>
+</ion-footer>

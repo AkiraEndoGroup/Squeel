@@ -15,6 +15,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { LoginPage } from '../pages/login/login';
 import { AllGamesPage } from '../pages/all-games/all-games';
+import { CommentsPage } from '../pages/comments/comments';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,7 +51,8 @@ import { Camera } from '@ionic-native/camera';
     TutorialPage,
     CreateAccountPage,
     LoginPage,
-    AllGamesPage
+    AllGamesPage,
+    CommentsPage
   ],
   imports: [
     ApolloModule.withClient(provideClient),
@@ -72,7 +74,8 @@ import { Camera } from '@ionic-native/camera';
     TutorialPage,
     CreateAccountPage,
     LoginPage,
-    AllGamesPage
+    AllGamesPage,
+    CommentsPage
   ],
   providers: [
     StatusBar,

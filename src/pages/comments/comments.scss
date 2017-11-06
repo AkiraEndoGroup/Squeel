@@ -1,0 +1,113 @@
+page-comments {
+  super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons {
+    margin-top: 4%;
+  }
+  ion-toolbar .toolbar-background {
+    background-color: transparent !important;
+  }
+  .comment {
+    background-color: #daf5ff !important;
+  }
+  ion-segment {
+    margin-bottom: 5px;
+  }
+  .description {
+    color: black;
+  }
+  .circle img {
+    transform: scale(2) rotate(90deg) !important;
+    padding-right: 3px;
+  }
+  ion-col {
+    margin: auto !important;
+  }
+  .trophiesScore {
+    font-size: 1.2em;
+  }
+  .trophies {
+    margin: auto;
+
+    span {
+      color: grey;
+    }
+    ion-icon {
+      // font-weight: bold;
+      font-size: 1.5em;
+      color: #D5BA4B;
+    }
+  }
+  .trophies2 {
+    margin: auto;
+    span {
+      color: grey;
+    }
+    ion-icon {
+      font-size: 1.5em;
+      color: grey;
+    }
+  }
+  .date {
+    font-size: 0.7em;
+    color: grey;
+  }
+  .name {
+    font-weight: bold;
+  }
+  .gameDate {
+    // font-family: 'CenturyGothicBold';
+    font-style: italic;
+  }
+  .topSqueels {
+    font-weight: bold;
+    padding-top: 9px;
+  }
+  .description img {
+    // display: block;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    margin: 0 auto 0;
+  }
+  @media (max-width: 400px) and (min-width: 322px) {
+      .featuredName {
+        font-size: 0.7em;
+      }
+  }
+  @media (max-width: 321px) {
+      ion-content {
+          font-size: 0.7em;
+      }
+      .gameHeader {
+        height: 100px !important;
+      }
+      .featuredName {
+        font-size: 0.5em;
+      }
+  }
+
+  @media (min-width: 400px) {
+
+    .gameHeader {
+      font-size: 1em;
+    }
+
+  }
+
+  @media (min-width: 768px) {
+      ion-content {
+          font-size: 1.2em;
+      }
+      .gameHeader {
+        height: 180px !important;
+      }
+  }
+  @media (min-width: 1024px) {
+      ion-content {
+          font-size: 1.5em;
+      }
+      .featuredName {
+        font-size: 1.2em;
+      }
+  }
+
+}

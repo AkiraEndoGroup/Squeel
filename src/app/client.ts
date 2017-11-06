@@ -4,6 +4,8 @@ const networkInterface = createNetworkInterface({
   uri: 'https://api.graph.cool/simple/v1/cj75aghwr1byq0177u0kv023b'
 });
 
+
+
 // The x-graphcool-source header is to let the server know that the example app has started.
 // (Not necessary for normal projects)
 networkInterface.use([{
