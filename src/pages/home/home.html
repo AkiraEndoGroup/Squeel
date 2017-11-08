@@ -47,14 +47,16 @@
       </div>
       <div [ngSwitch]="filter">
         <div *ngSwitchCase="'Latest'">
-          <ion-item-sliding *ngFor="let squeel of squeelsDataSliced" (tap)="gotoComment(squeel)">
-            <ion-item >
-              <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-              <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
-              <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
-              <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{loadedGame.oponent2}}</span>
-              <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-              <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} {{squeel.squeel.comments.length}} comments</span>
+          <ion-item-sliding *ngFor="let squeel of squeelsDataSliced" >
+            <ion-item>
+              <div (tap)="gotoComment(squeel)">
+                <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+                <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
+                <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
+                <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{loadedGame.oponent2}}</span>
+                <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+                <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} {{squeel.squeel.comments.length}} comments</span>
+              </div>
               <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
                 <span>{{squeel.length}}</span>
                 <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
@@ -76,14 +78,16 @@
           </ion-infinite-scroll>
       </div>
       <div *ngSwitchCase="'TopRated'">
-          <ion-item-sliding *ngFor="let squeel of squeelsTop" (tap)="gotoComment(squeel)">
+          <ion-item-sliding *ngFor="let squeel of squeelsTop">
             <ion-item>
-              <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-              <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
-              <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
-              <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{loadedGame.oponent2}}</span>
-              <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-              <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} {{squeel.squeel.comments.length}} comments</span>
+              <div (tap)="gotoComment(squeel)">
+                <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+                <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
+                <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
+                <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{loadedGame.oponent2}}</span>
+                <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+                <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} {{squeel.squeel.comments.length}} comments</span>
+              </div>
               <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
                 <span>{{squeel.length}}</span>
                 <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>

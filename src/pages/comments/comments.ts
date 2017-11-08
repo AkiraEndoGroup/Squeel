@@ -17,7 +17,7 @@ export class CommentsPage {
   comments = <any>[];
   loadedGame: any;
   userId: any;
-  comment: any;
+  comment: any = "";
   createdComment: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Angular2Apollo) {
@@ -30,30 +30,34 @@ export class CommentsPage {
   }
 
   sendMessage() {
-    this.apollo.mutate({
-      mutation: gql`
-      mutation createComment($squeelId: ID!, $comment: String, $userId: ID!){
-        createComment(squeelId: $squeelId, comment: $comment, userId: $userId) {
-          id
-          comment
-          createdAt
-          user{
+    if (this.comment == "") {
+      return;
+    } else {
+      this.apollo.mutate({
+        mutation: gql`
+        mutation createComment($squeelId: ID!, $comment: String, $userId: ID!){
+          createComment(squeelId: $squeelId, comment: $comment, userId: $userId) {
             id
-            username
+            comment
+            createdAt
+            user{
+              id
+              username
+            }
           }
         }
-      }
-      `, variables: {
-        squeelId: this.squeel.squeel.id,
-        comment: this.comment,
-        userId: this.userId
-      }
-    }).toPromise().then(({data}) => {
-      this.comment = "";
-      this.createdComment = data;
-      this.createdComment = this.createdComment.createComment;
-      this.comments.push(this.createdComment);
-    })
+        `, variables: {
+          squeelId: this.squeel.squeel.id,
+          comment: this.comment,
+          userId: this.userId
+        }
+      }).toPromise().then(({data}) => {
+        this.comment = "";
+        this.createdComment = data;
+        this.createdComment = this.createdComment.createComment;
+        this.comments.push(this.createdComment);
+      });
+    }
   }
 
 }

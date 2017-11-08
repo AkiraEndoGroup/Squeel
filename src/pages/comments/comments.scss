@@ -24,6 +24,18 @@ page-comments {
   ion-col {
     margin: auto !important;
   }
+  .item-inner {
+    border-bottom: 0px !important;
+  }
+  .item-block:first-child {
+    border-bottom: 0.55px solid #c8c7cc !important;
+  }
+  .item-block:last-child, {
+    border-bottom: 0px !important;
+  }
+  .actualcomment {
+    padding-left: 32px;
+  }
   .trophies {
     margin: auto;
 
