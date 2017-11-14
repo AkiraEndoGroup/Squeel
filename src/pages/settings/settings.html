@@ -2,6 +2,11 @@
 
   <ion-navbar>
     <ion-title>Settings</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="save()" [disabled]="!madeChanges">
+        Save
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -20,9 +25,12 @@
       </ion-item>
       <ion-item>
          <ion-label>Username</ion-label>
-         <ion-note item-right>
+         <ion-input float-right type="text" [(ngModel)]="username" (ionChange)="change()">
+
+         </ion-input>
+         <!-- <ion-note item-right>
           {{this.user.username}}
-          </ion-note>
+          </ion-note> -->
       </ion-item>
     </ion-list>
 

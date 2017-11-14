@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, ToastController } from 'ionic-angular';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';
@@ -19,8 +19,10 @@ export class SettingsPage {
 
   loading: any;
   user = <any>{};
+  madeChanges: boolean = false;
+  username: any;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public apollo: Angular2Apollo, private app:App) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public apollo: Angular2Apollo, private app:App) {
     this.apollo.query({
       query: gql`
         query {
@@ -34,11 +36,64 @@ export class SettingsPage {
     }).toPromise().then(({data}) => {
       this.user = data;
       this.user = this.user.user;
+      this.username = this.user.username;
     })
 
   }
 
+  change() {
+    if (this.username != this.user.username) {
+      this.madeChanges = true;
+    } else {
+      this.madeChanges = false;
+    }
+  }
 
+  save() {
+    if (!this.username.match(/^[0-9a-zA-Z]+$/)) {
+      let toast = this.toastCtrl.create({
+        message: 'Username can only contain numbers and letters.',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      console.log("alphanumeric");
+    } else if (this.username.length>15) {
+      let toast = this.toastCtrl.create({
+        message: 'Username is too long. Max of 15 characters.',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      console.log("too long");
+    } else {
+      console.log("valid");
+      this.apollo.mutate({
+        mutation: gql`
+        mutation updateUser($id: ID!, $username: String!) {
+          updateUser(id: $id, username: $username) {
+            id
+          }
+        }
+        `, variables: {
+          id: this.user.id,
+          username: this.username
+        }
+      }).toPromise().then(({data}) => {
+        this.navCtrl.pop();
+      },(errors) => {
+        console.log(errors);
+        if (errors == "Error: GraphQL error: A unique constraint would be violated on User. Details: Field name = username") {
+          let toast = this.toastCtrl.create({
+            message: 'Username is already taken. Try again.',
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+        }
+      });
+    }
+  }
 
   logoutUser() {
     //If platform is browser

@@ -12,9 +12,9 @@
 
 <ion-content>
   <!-- <div id="profile-bg"></div> -->
-  <div *ngIf="user">
-    <img class="avatar-background" src="{{user.profileUrl}}" />
-    <div class="avatar-background2"></div>
+  <div *ngIf="user" class="avatar-background">
+    <!-- <img class="avatar-background" src="{{user.profileUrl}}" /> -->
+    <!-- <div class="avatar-background2"></div> -->
   </div>
   <div id="content">
     <div id="profile-info" padding *ngIf="user">
@@ -24,31 +24,30 @@
       <!-- <button ion-button small outline class="follow-button" (click)="goToSettingsPage()">Edit Profile</button> -->
       <ion-row class="profile-numbers">
         <ion-col col-6 >
-          <p><ion-icon ios="ios-create-outline" md="md-create"></ion-icon></p>
-          <span>{{user.squeels.length}} Squeels</span>
+          <!-- <p><ion-icon ios="ios-create-outline" md="md-create"></ion-icon></p> -->
+          <span class="number">{{user.squeels.length}}</span><br><span> Squeels</span>
         </ion-col>
         <ion-col col-6>
-          <p><ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon></p>
-          <span>{{trophies}} Trophies</span>
+          <!-- <p><ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon></p> -->
+          <span class="number">{{trophies}}</span><br><span> Trophies</span>
         </ion-col>
       </ion-row>
     </div>
   </div>
   <div id="squeels" *ngIf="user">
-    <h2 text-center> My Squeels </h2>
     <ion-list>
+      <ion-list-header>
+        My Squeels
+      </ion-list-header>
       <ion-item-sliding *ngFor="let squeel of user.squeels">
-        <ion-item >
-          <ion-row>
-            <ion-col col-9 text-wrap class="description">
-              <p> {{squeel.description}}</p>
-              <span class="date">{{squeel.createdAt | date: 'MMM, d - hh:mm a'}}</span>
-            </ion-col>
-            <ion-col col-3 text-right class="trophies">
-              <span>{{squeel.upvotes.length}}</span>
-              <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
-            </ion-col>
-          </ion-row>
+        <ion-item>
+          <p [style.color]="'#4dc7ff'">{{squeel.game.oponent1}} vs {{squeel.game.oponent2}}</p>
+          <h5> {{squeel.description}}</h5>
+          <span class="date">{{squeel.createdAt | date: 'MMM, d - hh:mm a'}}</span>
+          <ion-note item-end class="trophies">
+            <span>{{squeel.upvotes.length}}</span>
+            <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+          </ion-note>
         </ion-item>
         <ion-item-options side="right" (tap)="deleteSqueel(squeel)">
         <button ion-button color="danger">

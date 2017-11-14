@@ -57,6 +57,10 @@ export class ProfilePage {
             upvotes {
               id
             }
+            game {
+              oponent1
+              oponent2
+            }
           }
         }
       }

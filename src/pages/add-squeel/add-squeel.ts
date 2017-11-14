@@ -100,6 +100,15 @@ export class AddSqueelPage {
                         profileUrl
                         username
                       }
+                      comments {
+                        id
+                        comment
+                        createdAt
+                        user{
+                          id
+                          username
+                        }
+                      }
                       game {
                         oponent1
                         oponent1Image

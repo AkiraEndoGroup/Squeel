@@ -70,7 +70,7 @@ export class SetUsernamePage {
         }
       });
     } else {
-      if (!this.form.value.username.match(/^[0-9a-z]+$/)) {
+      if (!this.form.value.username.match(/^[0-9A-Za-z]+$/)) {
         let toast = this.toastCtrl.create({
           message: 'Username can only contain numbers and letters.',
           duration: 3000,
@@ -80,7 +80,7 @@ export class SetUsernamePage {
         console.log("alphanumeric");
       } else if (this.form.value.username.length>15) {
         let toast = this.toastCtrl.create({
-          message: 'Username is too long.',
+          message: 'Username is too long. Max of 15 characters.',
           duration: 3000,
           position: 'top'
         });
@@ -89,7 +89,6 @@ export class SetUsernamePage {
       } else {
         console.log("invalid");
       }
-
     }
   }
 
