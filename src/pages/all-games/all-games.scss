@@ -2,8 +2,22 @@ page-all-games {
   super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons {
     margin-top: 4%;
   }
-  ion-segment {
-    margin-bottom: 5px;
+  .segment-ios .segment-button {
+    border: 0px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    // margin-bottom: 5px;
+    font-size: 1.1em !important;
+    border-radius: 0px !important;
+    opacity: 0.5 !important;
+    // text-transform: uppercase !important;
+    height: 6vh !important;
+    padding-top: 1vh;
+  }
+  .segment-ios .segment-activated {
+    background-color: white !important;
+    color: #4dc7ff !important;
+    border-bottom: 2px solid #4dc7ff !important;
+    opacity: 1 !important;
   }
   ion-fab {
     position: absolute !important;
@@ -17,20 +31,28 @@ page-all-games {
     width: 20%;
     transform: scale(2) rotate(90deg) !important;
   }
+  // #oponent1, #oponent2 {
+  //   span {
+  //     padding-left: 20px;
+  //     font-size: 1.2em;
+  //   }
+  // }
   .gameHeader {
     height: 130px;
     background-color: #daf5ff;
     font-size: 1em;
     margin-top: 10px;
+    border-bottom: 0.55px solid lightgrey;
+  }
+  .gameHeader:first-child {
+    margin-top: 0px;
   }
   .gameDate {
     font-size: 0.8em;
     color: grey;
   }
-  ion-col {
-    margin: auto !important;
-  }
   #stats {
+    margin: auto;
     .score {
       font-size: 2em;
     }

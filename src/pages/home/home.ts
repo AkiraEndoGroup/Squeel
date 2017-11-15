@@ -51,9 +51,12 @@ export class HomePage {
       this.isPastGame = true;
     }
     this.loading = this.loadingCtrl.create({
-      content: 'Finding squeels...'
+      spinner: 'crescent',
+      content: 'Finding squeels...',
+      enableBackdropDismiss: true,
     });
     this.loading.present();
+
     this.getLoadedGameSqueels().subscribe(({data}) => {
       this.loadedGameSqueels = data;
 

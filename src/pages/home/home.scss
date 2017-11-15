@@ -2,8 +2,22 @@ page-home {
   super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons {
     margin-top: 4%;
   }
-  ion-segment {
-    margin-bottom: 5px;
+  .segment-ios .segment-button {
+    border: 0px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    // margin-bottom: 5px;
+    font-size: 1.1em !important;
+    border-radius: 0px !important;
+    opacity: 0.5 !important;
+    // text-transform: uppercase !important;
+    height: 6vh !important;
+    padding-top: 1vh;
+  }
+  .segment-ios .segment-activated {
+    background-color: white !important;
+    color: #4dc7ff !important;
+    border-bottom: 2px solid #4dc7ff !important;
+    opacity: 1 !important;
   }
   ion-fab {
     position: absolute !important;
@@ -125,6 +139,9 @@ page-home {
     height: 25px;
     width: 25px;
     margin: 0 auto 0;
+  }
+  .spinner {
+    color: #00A6FF;
   }
   @media (max-width: 400px) and (min-width: 322px) {
       .featuredName {
