@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
+import { WelcomePage } from '../welcome/welcome';
+
+
+import {App} from 'ionic-angular';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import gql from 'graphql-tag';
@@ -23,7 +27,34 @@ export class AllGamesPage implements OnInit {
 
 
 
-  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController, private app:App) {
+    this.apollo.query({
+      query: gql`
+        query {
+          user {
+            id
+          }
+        }
+      `
+    }).toPromise().then(({data}) => {
+      let user = <any>{};
+      user = data;
+      user = user.user;
+      if (!user) {
+        let alert = this.alertCtrl.create({
+          title: 'Ooops! ',
+          subTitle: 'It looks like your session expired. Click OK to login again.',
+          buttons: [{
+            text: 'OK',
+            handler: () => {
+              localStorage.removeItem('graphcoolToken');
+              this.app.getRootNav().setRoot(WelcomePage);
+            }
+          }]
+        });
+        alert.present();
+      }
+    });
   }
 
   ngOnInit() {
@@ -40,7 +71,7 @@ export class AllGamesPage implements OnInit {
       this.pastGames = this.pastGames.allGames;
     });
   }
-  
+
   ionViewDidEnter() {
     this.getCurrentGames().subscribe(({data}) => {
       this.games = data;
