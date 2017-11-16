@@ -13,7 +13,7 @@ export class MyApp {
   rootPage:any = WelcomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    if (window.localStorage.getItem('graphcoolToken') != null) {
+    if (window.localStorage.getItem('graphcoolToken')) {
       this.rootPage = TabsPage;
     }
     platform.ready().then(() => {
