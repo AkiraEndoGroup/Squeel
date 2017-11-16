@@ -28,33 +28,6 @@ export class AllGamesPage implements OnInit {
 
 
   constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController, private app:App) {
-    this.apollo.query({
-      query: gql`
-        query {
-          user {
-            id
-          }
-        }
-      `
-    }).toPromise().then(({data}) => {
-      let user = <any>{};
-      user = data;
-      user = user.user;
-      if (!user) {
-        let alert = this.alertCtrl.create({
-          title: 'Ooops! ',
-          subTitle: 'It looks like your session expired. Click OK to login again.',
-          buttons: [{
-            text: 'OK',
-            handler: () => {
-              localStorage.removeItem('graphcoolToken');
-              this.app.getRootNav().setRoot(WelcomePage);
-            }
-          }]
-        });
-        alert.present();
-      }
-    });
   }
 
   ngOnInit() {
@@ -76,6 +49,33 @@ export class AllGamesPage implements OnInit {
     this.getCurrentGames().subscribe(({data}) => {
       this.games = data;
       this.games = this.games.allGames;
+      this.apollo.query({
+        query: gql`
+          query {
+            user {
+              id
+            }
+          }
+        `
+      }).toPromise().then(({data}) => {
+        let user = <any>{};
+        user = data;
+        user = user.user;
+        if (!user) {
+          let alert = this.alertCtrl.create({
+            title: 'Ooops! ',
+            subTitle: 'It looks like your session expired. Click OK to login again.',
+            buttons: [{
+              text: 'OK',
+              handler: () => {
+                localStorage.removeItem('graphcoolToken');
+                this.app.getRootNav().setRoot(WelcomePage);
+              }
+            }]
+          });
+          alert.present();
+        }
+      });
     });
   }
 
