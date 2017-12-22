@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, ModalController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { WelcomePage } from '../welcome/welcome';
+import { AddSqueelPage } from '../add-squeel/add-squeel';
 
 
 import {App} from 'ionic-angular';
@@ -23,11 +24,13 @@ export class AllGamesPage implements OnInit {
   pastGames = <any>[];
   now: any = new Date();
 
+  user: any;
+  userTrophies: any;
+  squeels = <any>[];
+  allSqueels = <any>[];
+  topSqueels = <any>[];
 
-
-
-
-  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController, private app:App) {
+  constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController, public modalCtrl: ModalController, private app:App) {
   }
 
   ngOnInit() {
@@ -35,108 +38,98 @@ export class AllGamesPage implements OnInit {
     newDate = this.now.setDate(this.now.getDate()-1);
     this.now = new Date(newDate).toISOString();
     console.log(this.now);
-    this.getCurrentGames().subscribe(({data}) => {
-      this.games = data;
-      this.games = this.games.allGames;
-    });
-    this.getPastGames().subscribe(({data}) => {
-      this.pastGames = data;
-      this.pastGames = this.pastGames.allGames;
+    this.getSqueels().subscribe(({data}) => {
+      this.squeels = data;
+      this.user = this.squeels.user;
+      //Sum of user trophies
+      this.userTrophies = this.user.squeels.map(item => item._upvotesMeta.count).reduce((a,b) => a+b);
+
+      this.squeels = this.squeels.allSqueels;
+      for (let squeel of this.squeels) {
+        let voted = false;
+        //Checking if user already voted on the squeel
+        if (squeel.upvotes.find(item => item.id == this.user.id)){
+          voted = true;
+        }
+        this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length})
+      }
+      console.log(this.allSqueels);
     });
   }
 
-  ionViewDidEnter() {
-    this.getCurrentGames().subscribe(({data}) => {
-      this.games = data;
-      this.games = this.games.allGames;
-      this.apollo.query({
-        query: gql`
-          query {
-            user {
+  // ionViewDidEnter() {
+  //   this.apollo.query({
+  //     query: gql`
+  //       query {
+  //         user {
+  //           id
+  //         }
+  //       }
+  //     `
+  //   }).toPromise().then(({data}) => {
+  //     let user = <any>{};
+  //     user = data;
+  //     user = user.user;
+  //     if (!user) {
+  //       let alert = this.alertCtrl.create({
+  //         title: 'Ooops! ',
+  //         subTitle: 'It looks like your session expired. Click OK to login again.',
+  //         buttons: [{
+  //           text: 'OK',
+  //           handler: () => {
+  //             localStorage.removeItem('graphcoolToken');
+  //             this.app.getRootNav().setRoot(WelcomePage);
+  //           }
+  //         }]
+  //       });
+  //       alert.present();
+  //     }
+  //   });
+  // }
+
+  getSqueels() {
+    return this.apollo.watchQuery({
+      query: gql`
+        query allSqueels {
+          allSqueels(orderBy: createdAt_DESC, first: 50) {
+            id
+            description
+            createdAt
+            team
+            anonymous
+            upvotes {
               id
             }
-          }
-        `
-      }).toPromise().then(({data}) => {
-        let user = <any>{};
-        user = data;
-        user = user.user;
-        if (!user) {
-          let alert = this.alertCtrl.create({
-            title: 'Ooops! ',
-            subTitle: 'It looks like your session expired. Click OK to login again.',
-            buttons: [{
-              text: 'OK',
-              handler: () => {
-                localStorage.removeItem('graphcoolToken');
-                this.app.getRootNav().setRoot(WelcomePage);
+            hashtag {
+              id
+              name
+            }
+            user {
+              id
+              profileUrl
+              username
+            }
+            comments {
+              id
+              comment
+              createdAt
+              user{
+                id
+                username
               }
-            }]
-          });
-          alert.present();
+            }
+          }
+          user {
+            id
+            squeels {
+              _upvotesMeta {
+                count
+              }
+            }
+          }
         }
-      });
+      `
     });
-  }
-
-  getCurrentGames() {
-    return this.apollo.watchQuery({
-      query: gql`
-      query allGames($date: DateTime){
-        allGames(orderBy: date_ASC, filter:{date_gte: $date}) {
-          id
-          oponent1
-          oponent1color
-          oponent1Score
-          oponent1Image
-          oponent1Trophies
-          oponent2
-          oponent2color
-          oponent2Score
-          oponent2Image
-          oponent2Trophies
-          date
-        }
-        user {
-          id
-        }
-      }
-      `, variables: {
-        date: this.now
-      },
-      fetchPolicy: "network-only"
-    });
-  }
-  getPastGames() {
-    return this.apollo.watchQuery({
-      query: gql`
-      query allGames($date: DateTime){
-        allGames(orderBy: date_DESC, filter:{date_lte: $date}) {
-          id
-          oponent1
-          oponent1color
-          oponent1Score
-          oponent1Image
-          oponent1Trophies
-          oponent2
-          oponent2color
-          oponent2Score
-          oponent2Image
-          oponent2Trophies
-          date
-        }
-        user {
-          id
-        }
-      }
-      `, variables: {
-        date: this.now
-      }
-    })
-  }
-
-  openHome(game) {
-    this.navCtrl.push(HomePage, {game: game});
   }
 
   tellMore() {
@@ -148,10 +141,74 @@ export class AllGamesPage implements OnInit {
     alert.present();
   }
 
+  upvote(squeel) {
+    squeel.voted = true;
+    squeel.length++;
+    this.apollo.mutate({
+      mutation: gql`
+      mutation addToSqueelOnUpvote($upvotesUserId: ID!, $likesSqueelId: ID!) {
+        addToSqueelOnUpvote(upvotesUserId: $upvotesUserId, likesSqueelId: $likesSqueelId) {
+          upvotesUser {
+            id
+          }
+        }
+      }
+      `,variables: {
+        upvotesUserId: this.user.id,
+        likesSqueelId: squeel.squeel.id
+      }
+    }).toPromise().then(() => console.log("upvoted success"));
+  }
+  downvote(squeel) {
+    squeel.voted = false;
+    squeel.length--;
+    this.apollo.mutate({
+      mutation: gql`
+      mutation removeFromSqueelOnUpvote($upvotesUserId: ID!, $likesSqueelId: ID!) {
+        removeFromSqueelOnUpvote(upvotesUserId: $upvotesUserId, likesSqueelId: $likesSqueelId) {
+          upvotesUser {
+            id
+          }
+        }
+      }
+      `,variables: {
+        upvotesUserId: this.user.id,
+        likesSqueelId: squeel.squeel.id
+      }
+    }).toPromise().then(() => console.log("downvoted success"));
+  }
+
+  createSqueel() {
+    let modal = this.modalCtrl.create(AddSqueelPage);
+    modal.present();
+    modal.onDidDismiss(squeel => {
+      console.log(squeel);
+      if (squeel) {
+        let temp = {squeel: squeel.createSqueel, voted: false, length: 0};
+        // this.squeelsDataSliced.unshift(temp);
+      }
+    });
+  }
+
+  compare(a,b) {
+    if (a.length > b.length)
+      return -1;
+    if (a.length < b.length)
+      return 1;
+    return 0;
+  }
+
   doRefresh(refresher) {
-    this.getCurrentGames().subscribe(({data}) => {
-      this.games = data;
-      this.games = this.games.allGames;
+    this.getSqueels().subscribe(({data}) => {
+      this.squeels = data;
+      this.squeels = this.squeels.allSqueels;
+      for (let squeel of this.squeels) {
+        let voted = false;
+        if (squeel.upvotes.indexOf(this.user.id) != -1){
+          voted = true;
+        }
+        this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length})
+      }
     });
     setTimeout(() => {
       console.log('Async operation has ended');
