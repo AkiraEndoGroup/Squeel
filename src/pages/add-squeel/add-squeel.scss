@@ -38,6 +38,20 @@ page-add-squeel {
   ion-list {
     margin: 0 !important;
   }
+  ion-list-header {
+    border-bottom: 0px !important;
+  }
+  ion-searchbar {
+    background: none !important;
+    input {
+      background: rgba(0, 0, 0, 0.2) !important;
+      border-radius: 20px !important;
+    }
+  }
+  ion-note {
+    float: right;
+    padding-right: 5%;
+  }
   ion-textarea {
     font-family: 'CenturyGothic';
   }

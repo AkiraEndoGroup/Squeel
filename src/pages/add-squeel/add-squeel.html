@@ -15,11 +15,10 @@
 </ion-header>
 
 <ion-content>
-  <div class="gameHeader" *ngIf="this.game">
+  <!-- <div class="gameHeader" *ngIf="this.game">
     <ion-grid>
       <ion-row text-center>
         <ion-col col-3 id="oponent1" class="team1" *ngIf="team == 'team1'">
-          <!-- <span class="circle1"></span> -->
           <img [src]="game.oponent1Image" />
           <br>
           <span padding-top>{{game.oponent1}}</span>
@@ -33,23 +32,33 @@
           <br>
         </ion-col>
         <ion-col col-3 id="oponent1" class="team2" *ngIf="team == 'team2'">
-          <!-- <span class="circle1"></span> -->
           <img [src]="game.oponent2Image" />
           <br>
           <span padding-top>{{game.oponent2}}</span>
         </ion-col>
         <ion-col col-3 id="oponent1" class="noteam" *ngIf="!team || team == 'team1'" (tap)="selectTeam2()">
-          <!-- <span class="circle1"></span> -->
           <br>
           <span>{{game.oponent2}}</span>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div> -->
+  <ion-list>
+    <ion-list-header>
+      Add Gametag
+      <ion-note>
+        <ion-icon name="help"></ion-icon>
+      </ion-note>
+    </ion-list-header>
+    <ion-searchbar placeholder="Search your gametag here" (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-list>
 
   <form *ngIf="form" [formGroup]="form" padding>
     <ion-list>
       <ion-item>
+        <ion-avatar item-start>
+          <img [src]="currentUser.profileUrl" />
+        </ion-avatar>
         <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" formControlName="description" ng-trim="false" placeholder="Let the other team know who's boss here in 140 characters or less..." name="description" maxlength="140" autosize></ion-textarea>
       </ion-item>
       <span class="charLeft" float-right>{{140 - form.value.description.length}}</span>
@@ -57,6 +66,12 @@
     <div text-center>
       <ion-item>
         <ion-label> Post anonymously </ion-label>
+        <ion-toggle formControlName="anonymous" checked="false"></ion-toggle>
+      </ion-item>
+    </div>
+    <div text-center>
+      <ion-item>
+        <ion-label> Share to Facebook </ion-label>
         <ion-toggle formControlName="anonymous" checked="false"></ion-toggle>
       </ion-item>
       <button ion-button round (tap)="squeel()" class="squeel"><ion-icon name="create"></ion-icon></button>
