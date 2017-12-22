@@ -60,35 +60,35 @@ export class AllGamesPage implements OnInit {
     });
   }
 
-  // ionViewDidEnter() {
-  //   this.apollo.query({
-  //     query: gql`
-  //       query {
-  //         user {
-  //           id
-  //         }
-  //       }
-  //     `
-  //   }).toPromise().then(({data}) => {
-  //     let user = <any>{};
-  //     user = data;
-  //     user = user.user;
-  //     if (!user) {
-  //       let alert = this.alertCtrl.create({
-  //         title: 'Ooops! ',
-  //         subTitle: 'It looks like your session expired. Click OK to login again.',
-  //         buttons: [{
-  //           text: 'OK',
-  //           handler: () => {
-  //             localStorage.removeItem('graphcoolToken');
-  //             this.app.getRootNav().setRoot(WelcomePage);
-  //           }
-  //         }]
-  //       });
-  //       alert.present();
-  //     }
-  //   });
-  // }
+  ionViewDidEnter() {
+    this.apollo.query({
+      query: gql`
+        query {
+          user {
+            id
+          }
+        }
+      `
+    }).toPromise().then(({data}) => {
+      let user = <any>{};
+      user = data;
+      user = user.user;
+      if (!user) {
+        let alert = this.alertCtrl.create({
+          title: 'Ooops! ',
+          subTitle: 'It looks like your session expired. Click OK to login again.',
+          buttons: [{
+            text: 'OK',
+            handler: () => {
+              localStorage.removeItem('graphcoolToken');
+              this.app.getRootNav().setRoot(WelcomePage);
+            }
+          }]
+        });
+        alert.present();
+      }
+    });
+  }
 
   getSqueels() {
     return this.apollo.watchQuery({
