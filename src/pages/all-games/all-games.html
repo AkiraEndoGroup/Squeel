@@ -96,6 +96,35 @@
   </ion-list>
 
   <ion-list *ngSwitchCase="'past'">
+    <ion-item-sliding *ngFor="let squeel of topSqueels" >
+      <ion-item>
+        <div (tap)="gotoComment(squeel)">
+          <div style="height: 40px">
+            <img class="userProfile" *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
+            <p class="date name" *ngIf="!squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
+            <p class="date name" *ngIf="squeel.squeel.anonymous">_</p>
+            <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
+            <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
+          </div>
+          <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+          <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
+        </div>
+        <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+          <span>{{squeel.length}}</span>
+          <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+        </ion-note>
+        <ion-note item-end class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+          <span>{{squeel.length}}</span>
+          <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+        </ion-note>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (tap)="report(squeel)">
+          <ion-icon name="flag"></ion-icon>
+          Report
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
     <!-- <div class="gameHeader" *ngFor="let game of pastGames" (click)="openHome(game)">
       <ion-grid>
         <ion-row text-center padding-top>

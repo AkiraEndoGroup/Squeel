@@ -15,7 +15,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item class="comment">
+    <!-- <ion-item class="comment">
       <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
       <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
       <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
@@ -30,7 +30,7 @@
         <span>{{squeel.length}}</span>
         <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
       </ion-note>
-    </ion-item>
+    </ion-item> -->
     <ion-item *ngFor="let comment of comments" class="actualcomment">
       <p class="date name">@{{comment.user.username}}</p>
       <p text-wrap class="description"> {{comment.comment}}</p>

@@ -4,6 +4,7 @@ import { IonicPage, NavController, AlertController, ModalController } from 'ioni
 import { HomePage } from '../home/home';
 import { WelcomePage } from '../welcome/welcome';
 import { AddSqueelPage } from '../add-squeel/add-squeel';
+import { CommentsPage } from '../comments/comments';
 
 
 import {App} from 'ionic-angular';
@@ -51,9 +52,11 @@ export class AllGamesPage implements OnInit {
         if (squeel.upvotes.find(item => item.id == this.user.id)){
           voted = true;
         }
-        this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length})
+        this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length});
+        this.topSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length})
       }
-      console.log(this.allSqueels);
+      this.topSqueels.sort(this.compare);
+      console.log(this.topSqueels);
     });
   }
 
@@ -91,7 +94,7 @@ export class AllGamesPage implements OnInit {
     return this.apollo.watchQuery({
       query: gql`
         query allSqueels {
-          allSqueels(orderBy: createdAt_DESC, first: 50) {
+          allSqueels(orderBy: createdAt_DESC, first: 100) {
             id
             description
             createdAt
@@ -216,4 +219,7 @@ export class AllGamesPage implements OnInit {
     }, 1500);
   }
 
+  gotoComment(squeel) {
+    this.navCtrl.push(CommentsPage, {squeel: squeel, user: this.user.id});
+  }
 }

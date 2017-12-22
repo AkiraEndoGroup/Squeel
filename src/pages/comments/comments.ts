@@ -23,7 +23,6 @@ export class CommentsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Angular2Apollo) {
     this.squeel = this.navParams.get('squeel');
     this.userId = this.navParams.get('user');
-    this.loadedGame = this.navParams.get('loadedGame');
     for (let comment of this.squeel.squeel.comments) {
       this.comments.push(comment);
     }
