@@ -50,10 +50,14 @@
         <ion-icon name="help"></ion-icon>
       </ion-note>
     </ion-list-header>
-    <ion-searchbar placeholder="Search your gametag here" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Search your gametag here" [(ngModel)]="inputHashtag" (ionInput)="getItems($event)"></ion-searchbar>
+    <div *ngFor="let hashtag of hashtags" padding-left (click)="chooseHashtag(hashtag)">
+      <p ion-text color="primary">#{{hashtag.name}}</p>
+    </div>
+    <p padding-left> Don't see the game you're looking for? <span ion-text color="primary" (click)="addHashtag()">Add it</span> </p>
   </ion-list>
 
-  <form *ngIf="form" [formGroup]="form" padding>
+  <form *ngIf="form && !searching" [formGroup]="form" padding>
     <ion-list>
       <ion-item>
         <ion-avatar item-start>

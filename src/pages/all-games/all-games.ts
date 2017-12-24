@@ -60,7 +60,7 @@ export class AllGamesPage implements OnInit {
     });
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.apollo.query({
       query: gql`
         query {

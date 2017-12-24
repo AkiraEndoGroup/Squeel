@@ -20,12 +20,24 @@ export class AddSqueelPage {
   team: any = "";
   posting: boolean = false;
 
+  searching: boolean = false;
+
+  hashtags = <any>[];
+  allHashtags = <any>[];
+  inputHashtag: String;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public apollo: Angular2Apollo, public formBuilder: FormBuilder,public toastCtrl: ToastController) {
     this.game = this.navParams.get('game');
 
     this.currentUserInfo().then(({data}) => {
       this.currentUser = data;
       this.currentUser = this.currentUser.user;
+    });
+    this.getAllHashtags().then(({data}) => {
+      this.hashtags = data;
+      this.hashtags = this.hashtags.allHashtags;
+      this.allHashtags = this.hashtags;
+      console.log(this.hashtags);
     });
     this.form = formBuilder.group({
      description: ['', Validators.required],
@@ -37,9 +49,11 @@ export class AddSqueelPage {
   cancel() {
     this.viewCtrl.dismiss();
   }
+
   selectTeam1() {
     this.team = "team1";
   }
+
   selectTeam2() {
     this.team = "team2";
   }
@@ -57,6 +71,75 @@ export class AddSqueelPage {
      `
    }).toPromise();
  }
+
+ getAllHashtags() {
+   return this.apollo.query({
+     query: gql`
+      query {
+        allHashtags {
+          id
+          name
+          _squeelsMeta {
+            count
+          }
+        }
+      }
+     `
+   }).toPromise();
+ }
+
+ chooseHashtag(hashtag) {
+   this.inputHashtag = "#" + hashtag.name;
+ }
+
+ //Reseting array
+ initializeItems(): void {
+   this.hashtags = this.allHashtags;
+ }
+
+ getItems(searchbar) {
+   // Reset items back to all of the items
+   this.initializeItems();
+
+   // set q to the value of the searchbar
+   var q = searchbar.srcElement.value;
+
+
+
+
+
+   // if the value is an empty string don't filter the items
+   if (!q) {
+     this.initializeItems();
+     this.searching = false;
+     return;
+   } else {
+     this.searching = true;
+     if (q.includes("#")) {
+       let words = q.split(" ");
+       for (let word of words) {
+         if (word.startsWith("#")) {
+           q = word.substr(1)
+           console.log(word);
+         }
+       }
+       searchbar.srcElement.style.color = "#4dc7ff";
+     } else {
+       searchbar.srcElement.style.color = "black";
+     }
+
+   }
+
+   this.hashtags = this.allHashtags.filter((v) => {
+     if(v.name && q) {
+       if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+         return true;
+       }
+       return false;
+     }
+   });
+ }
+
  squeel() {
    if (this.posting) {
      return;
