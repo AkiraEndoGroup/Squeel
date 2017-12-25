@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { Angular2Apollo } from 'angular2-apollo';
@@ -25,8 +25,9 @@ export class AddSqueelPage {
   hashtags = <any>[];
   allHashtags = <any>[];
   inputHashtag: String;
+  inputHashtagId: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public apollo: Angular2Apollo, public formBuilder: FormBuilder,public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public alertCtrl: AlertController, public apollo: Angular2Apollo, public formBuilder: FormBuilder,public toastCtrl: ToastController) {
     this.game = this.navParams.get('game');
 
     this.currentUserInfo().then(({data}) => {
@@ -37,7 +38,7 @@ export class AddSqueelPage {
       this.hashtags = data;
       this.hashtags = this.hashtags.allHashtags;
       this.allHashtags = this.hashtags;
-      console.log(this.hashtags);
+      this.hashtags = this.hashtags.slice(0,3);
     });
     this.form = formBuilder.group({
      description: ['', Validators.required],
@@ -90,11 +91,14 @@ export class AddSqueelPage {
 
  chooseHashtag(hashtag) {
    this.inputHashtag = "#" + hashtag.name;
+   this.inputHashtagId = hashtag.id;
+   let element = document.getElementsByClassName('searchbar-input')[0].style.color = "#4dc7ff";
  }
 
  //Reseting array
  initializeItems(): void {
    this.hashtags = this.allHashtags;
+   this.hashtags = this.hashtags.slice(0,3);
  }
 
  getItems(searchbar) {
@@ -103,9 +107,6 @@ export class AddSqueelPage {
 
    // set q to the value of the searchbar
    var q = searchbar.srcElement.value;
-
-
-
 
 
    // if the value is an empty string don't filter the items
@@ -140,6 +141,60 @@ export class AddSqueelPage {
    });
  }
 
+ addHashtag() {
+   let prompt = this.alertCtrl.create({
+     title: 'Hashtag',
+     message: 'Enter what you are talking about',
+     inputs: [
+        {
+          name: 'hashtag',
+          placeholder: '#msuvsuofm'
+        },
+      ],
+     buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Create',
+        handler: data => {
+          console.log(data);
+          this.createHashtag(data.hashtag);
+        }
+      }
+    ]
+  });
+  prompt.present();
+ }
+
+ createHashtag(hashtag) {
+   if (hashtag.startsWith("#")) {
+     hashtag = hashtag.substr(1)
+   }
+   this.apollo.mutate({
+    mutation: gql`
+    mutation createHashtag($name: String!){
+      createHashtag(name: $name){
+                    id
+                    name
+                  }
+                }
+    `,
+    variables: {
+      name: hashtag,
+    }
+  }).toPromise().then(({data}) => {
+    let returnedValue = <any>{};
+    returnedValue = data;
+    this.inputHashtagId = returnedValue.createHashtag.id;
+    this.inputHashtag = "#" + hashtag;
+    this.searching = false;
+  });
+ }
+
  squeel() {
    if (this.posting) {
      return;
@@ -152,9 +207,9 @@ export class AddSqueelPage {
       });
       toast.present();
       return;
-   } else if (!this.team) {
+   } else if (!this.inputHashtag) {
      let toast = this.toastCtrl.create({
-        message: 'Please select your team',
+        message: 'Please select your hashtag',
         duration: 3000,
         position: 'top'
       });
@@ -168,8 +223,8 @@ export class AddSqueelPage {
                           $anonymous: Boolean,
                           $userId: ID!,
                           $team: Int,
-                          $gameId: ID){
-        createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous, gameId: $gameId){
+                          $hashtagId: ID){
+        createSqueel(description: $description, userId: $userId, team: $team, anonymous: $anonymous, hashtagId: $hashtagId){
                       id
                       description
                       createdAt
@@ -192,14 +247,6 @@ export class AddSqueelPage {
                           username
                         }
                       }
-                      game {
-                        oponent1
-                        oponent1Image
-                        oponent1color
-                        oponent2
-                        oponent2Image
-                        oponent2color
-                      }
                     }
                   }
       `,
@@ -208,7 +255,7 @@ export class AddSqueelPage {
         userId: this.currentUser.id,
         team: (this.team == "team1") ? 1 : 2,
         anonymous: this.form.value.anonymous,
-        gameId: this.game.id
+        hashtagId: this.inputHashtagId
       }
     }).toPromise().then(({data}) => {
       this.form.value.description = "";
