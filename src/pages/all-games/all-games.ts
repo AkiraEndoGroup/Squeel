@@ -29,7 +29,9 @@ export class AllGamesPage implements OnInit {
   userTrophies: any;
   squeels = <any>[];
   allSqueels = <any>[];
+  allSqueelsSliced = <any>[];
   topSqueels = <any>[];
+  topSqueelsSliced = <any>[];
 
   constructor(public navCtrl: NavController, public apollo: Angular2Apollo, public alertCtrl: AlertController, public modalCtrl: ModalController, private app:App) {
   }
@@ -43,7 +45,13 @@ export class AllGamesPage implements OnInit {
       this.squeels = data;
       this.user = this.squeels.user;
       //Sum of user trophies
-      this.userTrophies = this.user.squeels.map(item => item._upvotesMeta.count).reduce((a,b) => a+b);
+      console.log(this.user);
+      if (this.user.squeels.length != 0) {
+        this.userTrophies = this.user.squeels.map(item => item._upvotesMeta.count).reduce((a,b) => a+b);
+      } else {
+        this.userTrophies = 0;
+      }
+
 
       this.squeels = this.squeels.allSqueels;
       for (let squeel of this.squeels) {
@@ -53,10 +61,12 @@ export class AllGamesPage implements OnInit {
           voted = true;
         }
         this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length});
-        this.topSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length})
       }
-      this.topSqueels.sort(this.compare);
-      console.log(this.topSqueels);
+      this.topSqueels = this.allSqueels.concat().sort(this.compare);
+
+      //Limit to first 20 and load more with infinite scroll
+      this.allSqueelsSliced = this.allSqueels.slice(0, 20);
+      this.topSqueelsSliced = this.topSqueels.slice(0, 20);
     });
   }
 
@@ -203,15 +213,28 @@ export class AllGamesPage implements OnInit {
 
   doRefresh(refresher) {
     this.getSqueels().subscribe(({data}) => {
+
       this.squeels = data;
+      this.user = this.squeels.user;
       this.squeels = this.squeels.allSqueels;
+
+      this.allSqueels = [];
+
+
       for (let squeel of this.squeels) {
         let voted = false;
-        if (squeel.upvotes.indexOf(this.user.id) != -1){
+        //Checking if user already voted on the squeel
+        if (squeel.upvotes.find(item => item.id == this.user.id)){
           voted = true;
         }
-        this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length})
+        this.allSqueels.push({squeel: squeel, voted: voted, length: squeel.upvotes.length});
       }
+
+      this.topSqueels = this.allSqueels.concat().sort(this.compare);
+
+      //Limit to first 20 and load more with infinite scroll
+      this.allSqueelsSliced = this.allSqueels.slice(0, 20);
+      this.topSqueelsSliced = this.topSqueels.slice(0, 20);
     });
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -221,5 +244,18 @@ export class AllGamesPage implements OnInit {
 
   gotoComment(squeel) {
     this.navCtrl.push(CommentsPage, {squeel: squeel, user: this.user.id});
+  }
+
+  doInfinite(infiniteScroll) {
+    this.allSqueelsSliced = this.allSqueelsSliced.concat(this.allSqueels.slice(this.allSqueelsSliced.length, this.allSqueelsSliced.length+10));
+    setTimeout(() => {
+      infiniteScroll.complete();
+    }, 500)
+  }
+  doInfiniteTop(infiniteScroll) {
+    this.topSqueelsSliced = this.topSqueelsSliced.concat(this.topSqueels.slice(this.topSqueelsSliced.length, this.topSqueelsSliced.length+10));
+    setTimeout(() => {
+      infiniteScroll.complete();
+    }, 500)
   }
 }

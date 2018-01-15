@@ -41,39 +41,39 @@ export class WelcomePage {
     let env = this;
 
     //If platform is browser
-    if (this.platform.is('core') || this.platform.is('mobileweb')) {
-      this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu6@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
-      console.log(this.user);
-      this.loading = this.loadingCtrl.create({
-        content: 'Logging in...'
-      });
-      this.loading.present();
-
-      this.createUser().then(({data}) => {
-        console.log(data);
-        if (data){
-          let token = <any>{};
-          token = data;
-          localStorage.setItem('graphcoolToken', token.signinUser.token);
-          this.loading.dismiss();
-          this.navCtrl.push(SetUsernamePage);
-        }
-      }, (errors) => {
-        //In case user already exists, only do signIn
-        if (errors == "Error: GraphQL error: User already exists with that information") {
-          this.signInUser().then(({data}) => {
-            if (data) {
-              let token = <any>{};
-              token = data;
-              localStorage.setItem('graphcoolToken', token.signinUser.token);
-              this.loading.dismiss();
-              this.navCtrl.push(TabsPage);
-            }
-          });
-        }
-      });
-      return;
-    } else {
+    // if (this.platform.is('core') || this.platform.is('mobileweb')) {
+    //   this.user = { name: 'Gustavo Fulton', gender: 'Male', email: "gugafflu6@gmail.com", picture: "https://graph.facebook.com/10212157223859147/picture?type=large" };
+    //   console.log(this.user);
+    //   this.loading = this.loadingCtrl.create({
+    //     content: 'Logging in...'
+    //   });
+    //   this.loading.present();
+    //
+    //   this.createUser().then(({data}) => {
+    //     console.log(data);
+    //     if (data){
+    //       let token = <any>{};
+    //       token = data;
+    //       localStorage.setItem('graphcoolToken', token.signinUser.token);
+    //       this.loading.dismiss();
+    //       this.navCtrl.push(SetUsernamePage);
+    //     }
+    //   }, (errors) => {
+    //     //In case user already exists, only do signIn
+    //     if (errors == "Error: GraphQL error: User already exists with that information") {
+    //       this.signInUser().then(({data}) => {
+    //         if (data) {
+    //           let token = <any>{};
+    //           token = data;
+    //           localStorage.setItem('graphcoolToken', token.signinUser.token);
+    //           this.loading.dismiss();
+    //           this.navCtrl.push(TabsPage);
+    //         }
+    //       });
+    //     }
+    //   });
+    //   return;
+    // } else {
       let permissions = new Array<string>();
       let that = this;
 
@@ -127,7 +127,7 @@ export class WelcomePage {
         that.loading.dismiss();
         console.log(error);
       });
-    }
+    // }
   }
 
   loginTwitter() {

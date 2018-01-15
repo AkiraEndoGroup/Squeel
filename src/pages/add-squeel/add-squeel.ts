@@ -92,7 +92,7 @@ export class AddSqueelPage {
  chooseHashtag(hashtag) {
    this.inputHashtag = "#" + hashtag.name;
    this.inputHashtagId = hashtag.id;
-   let element = document.getElementsByClassName('searchbar-input')[0].style.color = "#4dc7ff";
+   this.searching = false;
  }
 
  //Reseting array

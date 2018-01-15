@@ -39,13 +39,13 @@
 
 <div [ngSwitch]="gamesTag">
   <ion-list *ngSwitchCase="'current'">
-    <ion-item-sliding *ngFor="let squeel of allSqueels" >
+    <ion-item-sliding *ngFor="let squeel of allSqueelsSliced" >
       <ion-item>
         <div (tap)="gotoComment(squeel)">
           <div style="height: 40px">
             <img class="userProfile" *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
             <p class="date name" *ngIf="!squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-            <p class="date name" *ngIf="squeel.squeel.anonymous">_</p>
+            <p class="date name" *ngIf="squeel.squeel.anonymous">	&nbsp; </p>
             <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
             <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
           </div>
@@ -93,16 +93,19 @@
         </ion-row>
       </ion-grid>
     </div> -->
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content>Loading</ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-list>
 
   <ion-list *ngSwitchCase="'past'">
-    <ion-item-sliding *ngFor="let squeel of topSqueels" >
+    <ion-item-sliding *ngFor="let squeel of topSqueelsSliced" >
       <ion-item>
         <div (tap)="gotoComment(squeel)">
           <div style="height: 40px">
             <img class="userProfile" *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
             <p class="date name" *ngIf="!squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-            <p class="date name" *ngIf="squeel.squeel.anonymous">_</p>
+            <p class="date name" *ngIf="squeel.squeel.anonymous"> &nbsp; </p>
             <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
             <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
           </div>
@@ -150,6 +153,9 @@
         </ion-row>
       </ion-grid>
     </div> -->
+    <ion-infinite-scroll (ionInfinite)="doInfiniteTop($event)">
+      <ion-infinite-scroll-content>Loading</ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-list>
 </div>
 

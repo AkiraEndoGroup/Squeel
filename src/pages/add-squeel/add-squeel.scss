@@ -26,6 +26,9 @@ page-add-squeel {
     font-weight: 600;
     color: map-get($colors, primary);
   }
+  .searchbar-input {
+    color: #4dc7ff !important;
+  }
   ion-item:first-child {
     border: 0 !important;
   }
