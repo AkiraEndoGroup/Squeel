@@ -57,6 +57,10 @@ export class ProfilePage {
             upvotes {
               id
             }
+            hashtag {
+              id
+              name
+            }
             game {
               oponent1
               oponent2

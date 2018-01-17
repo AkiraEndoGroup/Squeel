@@ -6,12 +6,7 @@
     <ion-buttons start>
       <button ion-button icon-only class="mytrophies">
          <ion-icon name="trophy"></ion-icon>
-         <p>{{userTrophies}}</p>
-      </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="tellMore()">
-         <ion-icon name="american-football"></ion-icon>
+         <p style="font-weight: bold">{{userTrophies}}</p>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -28,10 +23,10 @@
   </ion-refresher>
   <div>
     <ion-segment [(ngModel)]="gamesTag">
-      <ion-segment-button value="current">
+      <ion-segment-button value="current" style="font-weight: bold">
         Latest
       </ion-segment-button>
-      <ion-segment-button value="past">
+      <ion-segment-button value="past" style="font-weight: bold">
         Hottest
       </ion-segment-button>
     </ion-segment>
@@ -43,9 +38,9 @@
       <ion-item>
         <div (tap)="gotoComment(squeel)">
           <div style="height: 40px">
-            <img class="userProfile" *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
-            <p class="date name" *ngIf="!squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-            <p class="date name" *ngIf="squeel.squeel.anonymous">	&nbsp; </p>
+            <img class="userProfile" [src]="squeel.squeel.user.profileUrl" />
+            <p class="date name">@{{squeel.squeel.user.username}}</p>
+            <!-- <p class="date name" *ngIf="squeel.squeel.anonymous">	&nbsp; </p> -->
             <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
             <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
           </div>
@@ -103,9 +98,9 @@
       <ion-item>
         <div (tap)="gotoComment(squeel)">
           <div style="height: 40px">
-            <img class="userProfile" *ngIf="!squeel.squeel.anonymous" [src]="squeel.squeel.user.profileUrl" />
-            <p class="date name" *ngIf="!squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-            <p class="date name" *ngIf="squeel.squeel.anonymous"> &nbsp; </p>
+            <img class="userProfile" [src]="squeel.squeel.user.profileUrl" />
+            <p class="date name">@{{squeel.squeel.user.username}}</p>
+            <!-- <p class="date name" *ngIf="squeel.squeel.anonymous"> &nbsp; </p> -->
             <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
             <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
           </div>
