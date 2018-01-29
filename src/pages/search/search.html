@@ -1,0 +1,33 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <!-- <ion-title>Search</ion-title> -->
+    <ion-searchbar (ionInput)="getItems($event)" animated="false" autocomplete="true" autocorrect="true" placeholder="Search for popular hashtags"></ion-searchbar>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <!-- <h3 text-center>Popular Hashtags</h3> -->
+  <ion-list *ngIf="queryList.length != 0">
+
+    <ion-item *ngFor="let hashtag of queryList" (tap)="gotoHashtagPage(hashtag)">
+      <ion-avatar item-start>
+        <img src="assets/hashtag.png" />
+      </ion-avatar>
+      <h4>#{{hashtag.name}}</h4>
+      <p>{{hashtag._squeelsMeta.count}} squeels</p>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

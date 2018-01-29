@@ -1,0 +1,24 @@
+page-search {
+  // ion-searchbar {
+  //   background: none !important;
+  //   input {
+  //     background: #E5E9F2 !important;
+  //     border-radius: 20px !important;
+  //   }
+  // }
+
+  .item-block:first-child, .item-block:last-child {
+    border: none !important;
+  }
+  ion-item .item-inner {
+    border: none !important;
+  }
+
+  h4 {
+    color: map-get($colors, primary) !important;
+  }
+  p {
+    // color: grey
+  }
+
+}

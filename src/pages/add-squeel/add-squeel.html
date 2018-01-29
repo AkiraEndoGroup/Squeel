@@ -60,7 +60,7 @@
 
   <form *ngIf="form && !searching" [formGroup]="form" padding>
     <ion-list>
-      <p> Talking about: <span ion-text color="primary">{{inputHashtag}}</span> </p>
+      <p> Talking about: <span ion-text color="primary" style="font-weight: bold">{{inputHashtag}}</span> </p>
       <ion-item>
         <ion-avatar item-start>
           <img [src]="currentUser.profileUrl" />
@@ -69,12 +69,12 @@
       </ion-item>
       <span class="charLeft" float-right>{{140 - form.value.description.length}}</span>
     </ion-list>
-    <div text-center>
+    <!-- <div text-center>
       <ion-item>
         <ion-label> Post anonymously </ion-label>
         <ion-toggle formControlName="anonymous" checked="false"></ion-toggle>
       </ion-item>
-    </div>
+    </div> -->
     <div text-center>
       <ion-item>
         <ion-label> Share to Facebook </ion-label>

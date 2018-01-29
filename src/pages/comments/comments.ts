@@ -42,6 +42,7 @@ export class CommentsPage {
             user{
               id
               username
+              profileUrl
             }
           }
         }

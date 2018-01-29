@@ -1,0 +1,44 @@
+<!--
+  Generated template for the HashtagPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>#{{hashtag.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item-sliding *ngFor="let squeel of allSqueels" >
+    <ion-item>
+      <div (tap)="gotoComment(squeel)">
+        <div style="height: 40px">
+          <img class="userProfile" [src]="squeel.squeel.user.profileUrl" />
+          <p class="date name">@{{squeel.squeel.user.username}}</p>
+          <p class="date name hashtag" *ngIf="hashtag.name" ion-text color="primary">#{{hashtag.name}}</p>
+        </div>
+        <p text-wrap class="description"> {{squeel.squeel.description}}</p>
+        <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
+      </div>
+      <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
+        <span>{{squeel.length}}</span>
+        <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+      </ion-note>
+      <ion-note item-end class="trophies2" *ngIf="!squeel.voted" (tap)="upvote(squeel)">
+        <span>{{squeel.length}}</span>
+        <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
+      </ion-note>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button color="danger" (tap)="report(squeel)">
+        <ion-icon name="flag"></ion-icon>
+        Report
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-content>

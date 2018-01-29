@@ -15,23 +15,10 @@
 
 <ion-content>
   <ion-list>
-    <!-- <ion-item class="comment">
-      <p class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</p>
-      <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && !squeel.squeel.anonymous">@{{squeel.squeel.user.username}}</span>
-      <span class="date name" [style.color]="loadedGame.oponent1color"  *ngIf="squeel.squeel.team == 1 && squeel.squeel.anonymous">@{{loadedGame.oponent1}}</span>
-      <span class="date name" [style.color]="loadedGame.oponent2color"  *ngIf="squeel.squeel.team == 2 && squeel.squeel.anonymous">@{{loadedGame.oponent2}}</span>
-      <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-      <span class="date">{{squeel.squeel.createdAt | amTimeAgo}}</span>
-      <ion-note item-end class="trophies" *ngIf="squeel.voted">
-        <span>{{squeel.length}}</span>
-        <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
-      </ion-note>
-      <ion-note item-end class="trophies2" *ngIf="!squeel.voted">
-        <span>{{squeel.length}}</span>
-        <ion-icon ios="ios-trophy-outline" md="md-trophy"></ion-icon>
-      </ion-note>
-    </ion-item> -->
     <ion-item *ngFor="let comment of comments" class="actualcomment">
+      <ion-avatar item-start>
+        <img class="userProfile" [src]="comment.user.profileUrl" />
+      </ion-avatar>
       <p class="date name">@{{comment.user.username}}</p>
       <p text-wrap class="description"> {{comment.comment}}</p>
       <span class="date">{{comment.createdAt | amTimeAgo}}</span>
@@ -43,7 +30,6 @@
 <ion-footer no-border>
  <ion-toolbar no-border>
     <ion-item class="input-wrap" padding-left no-border>
-      <!-- <ion-input placeholder="Text Input" [(ngModel)]="comment"></ion-input> -->
         <ion-textarea autoComplete="on" spellcheck="on" autocorrect="on" type="text" [(ngModel)]="comment" ng-trim="false" placeholder="Comment here - 140 characters max" name="description" maxlength="140" autosize></ion-textarea>
         <button ion-button clear icon-only item-right (click)="sendMessage()">
             <ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles"></ion-icon>

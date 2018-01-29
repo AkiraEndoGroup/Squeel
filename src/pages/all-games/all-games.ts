@@ -5,6 +5,7 @@ import { HomePage } from '../home/home';
 import { WelcomePage } from '../welcome/welcome';
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 import { CommentsPage } from '../comments/comments';
+import { HashtagPage } from '../hashtag/hashtag';
 
 
 import {App} from 'ionic-angular';
@@ -129,6 +130,7 @@ export class AllGamesPage implements OnInit {
               user{
                 id
                 username
+                profileUrl
               }
             }
           }
@@ -244,6 +246,10 @@ export class AllGamesPage implements OnInit {
 
   gotoComment(squeel) {
     this.navCtrl.push(CommentsPage, {squeel: squeel, user: this.user.id});
+  }
+
+  gotoHashtagPage(hashtag) {
+    this.navCtrl.push(HashtagPage, {hashtag: hashtag});
   }
 
   doInfinite(infiniteScroll) {

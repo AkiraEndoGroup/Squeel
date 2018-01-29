@@ -36,16 +36,16 @@
   <ion-list *ngSwitchCase="'current'">
     <ion-item-sliding *ngFor="let squeel of allSqueelsSliced" >
       <ion-item>
-        <div (tap)="gotoComment(squeel)">
+        <div>
           <div style="height: 40px">
             <img class="userProfile" [src]="squeel.squeel.user.profileUrl" />
             <p class="date name">@{{squeel.squeel.user.username}}</p>
             <!-- <p class="date name" *ngIf="squeel.squeel.anonymous">	&nbsp; </p> -->
-            <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
+            <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary" (tap)="gotoHashtagPage(squeel.squeel.hashtag)">#{{squeel.squeel.hashtag.name}}</p>
             <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
           </div>
           <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-          <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
+          <span class="date" (tap)="gotoComment(squeel)">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
         </div>
         <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
           <span>{{squeel.length}}</span>
@@ -96,16 +96,16 @@
   <ion-list *ngSwitchCase="'past'">
     <ion-item-sliding *ngFor="let squeel of topSqueelsSliced" >
       <ion-item>
-        <div (tap)="gotoComment(squeel)">
+        <div>
           <div style="height: 40px">
             <img class="userProfile" [src]="squeel.squeel.user.profileUrl" />
             <p class="date name">@{{squeel.squeel.user.username}}</p>
             <!-- <p class="date name" *ngIf="squeel.squeel.anonymous"> &nbsp; </p> -->
-            <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary">#{{squeel.squeel.hashtag.name}}</p>
+            <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary" (tap)="gotoHashtagPage(squeel.squeel.hashtag)">#{{squeel.squeel.hashtag.name}}</p>
             <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
           </div>
           <p text-wrap class="description"> {{squeel.squeel.description}}</p>
-          <span class="date">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
+          <span class="date" (tap)="gotoComment(squeel)">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
         </div>
         <ion-note item-end class="trophies" *ngIf="squeel.voted" (tap)="downvote(squeel)">
           <span>{{squeel.length}}</span>
