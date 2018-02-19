@@ -230,6 +230,10 @@ export class AddSqueelPage {
                       createdAt
                       team
                       anonymous
+                      hashtag{
+                        id
+                        name
+                      }
                       upvotes {
                         id
                       }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, AlertController, ModalController } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
 import { WelcomePage } from '../welcome/welcome';
 import { AddSqueelPage } from '../add-squeel/add-squeel';
 import { CommentsPage } from '../comments/comments';
@@ -143,7 +142,8 @@ export class AllGamesPage implements OnInit {
             }
           }
         }
-      `
+      `,
+      fetchPolicy: 'network-only'
     });
   }
 
@@ -200,7 +200,7 @@ export class AllGamesPage implements OnInit {
       console.log(squeel);
       if (squeel) {
         let temp = {squeel: squeel.createSqueel, voted: false, length: 0};
-        // this.squeelsDataSliced.unshift(temp);
+        this.allSqueelsSliced.unshift(temp);
       }
     });
   }
@@ -253,13 +253,13 @@ export class AllGamesPage implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
-    this.allSqueelsSliced = this.allSqueelsSliced.concat(this.allSqueels.slice(this.allSqueelsSliced.length, this.allSqueelsSliced.length+10));
+    this.allSqueelsSliced = this.allSqueelsSliced.concat(this.allSqueels.slice(this.allSqueelsSliced.length, this.allSqueelsSliced.length+20));
     setTimeout(() => {
       infiniteScroll.complete();
     }, 500)
   }
   doInfiniteTop(infiniteScroll) {
-    this.topSqueelsSliced = this.topSqueelsSliced.concat(this.topSqueels.slice(this.topSqueelsSliced.length, this.topSqueelsSliced.length+10));
+    this.topSqueelsSliced = this.topSqueelsSliced.concat(this.topSqueels.slice(this.topSqueelsSliced.length, this.topSqueelsSliced.length+20));
     setTimeout(() => {
       infiniteScroll.complete();
     }, 500)

@@ -41,7 +41,7 @@
       </ion-list-header>
       <ion-item-sliding *ngFor="let squeel of user.squeels">
         <ion-item>
-          <p [style.color]="'#4dc7ff'">#{{squeel.hashtag.name}}</p>
+          <p [style.color]="'#4dc7ff'" *ngIf="squeel.hashtag">#{{squeel.hashtag.name}}</p>
           <h5> {{squeel.description}}</h5>
           <span class="date">{{squeel.createdAt | date: 'MMM, d - hh:mm a'}}</span>
           <ion-note item-end class="trophies">

@@ -3,13 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ProfilePage } from '../pages/profile/profile';
 import { AddSqueelPage } from '../pages/add-squeel/add-squeel';
 import { SettingsPage } from '../pages/settings/settings';
-import { SqueelpopoverPage } from '../pages/squeelpopover/squeelpopover';
 import { SetUsernamePage } from '../pages/set-username/set-username';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { CreateAccountPage } from '../pages/create-account/create-account';
@@ -44,21 +42,19 @@ import { Camera } from '@ionic-native/camera';
   declarations: [
     MyApp,
     Autosize,
-    HomePage,
     TabsPage,
-    WelcomePage,
-    ProfilePage,
-    AddSqueelPage,
-    SettingsPage,
-    SqueelpopoverPage,
-    SetUsernamePage,
-    TutorialPage,
-    CreateAccountPage,
-    LoginPage,
-    AllGamesPage,
-    CommentsPage,
-    SearchPage,
-    HashtagPage
+    // WelcomePage,
+    // ProfilePage,
+    // AddSqueelPage,
+    // SettingsPage,
+    // SetUsernamePage,
+    // TutorialPage,
+    // CreateAccountPage,
+    // LoginPage,
+    // AllGamesPage,
+    // CommentsPage,
+    // SearchPage,
+    // HashtagPage
   ],
   imports: [
     ApolloModule.withClient(provideClient),
@@ -69,13 +65,11 @@ import { Camera } from '@ionic-native/camera';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     TabsPage,
     WelcomePage,
     ProfilePage,
     AddSqueelPage,
     SettingsPage,
-    SqueelpopoverPage,
     SetUsernamePage,
     TutorialPage,
     CreateAccountPage,

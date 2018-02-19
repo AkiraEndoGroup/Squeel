@@ -42,7 +42,7 @@
             <p class="date name">@{{squeel.squeel.user.username}}</p>
             <!-- <p class="date name" *ngIf="squeel.squeel.anonymous">	&nbsp; </p> -->
             <p class="date name hashtag" *ngIf="squeel.squeel.hashtag" ion-text color="primary" (tap)="gotoHashtagPage(squeel.squeel.hashtag)">#{{squeel.squeel.hashtag.name}}</p>
-            <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">#msuvspenn</p>
+            <p class="date name hashtag" *ngIf="!squeel.squeel.hashtag" ion-text color="primary">&nbsp;</p>
           </div>
           <p text-wrap class="description"> {{squeel.squeel.description}}</p>
           <span class="date" (tap)="gotoComment(squeel)">{{squeel.squeel.createdAt | amTimeAgo}} | {{squeel.squeel.comments.length}} comments</span>
